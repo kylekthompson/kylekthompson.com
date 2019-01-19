@@ -8,7 +8,7 @@ const Logo = styled.img`
 export default function Index() {
   return (
     <div>
-      <Logo src="/static/images/logo.svg" />
+      <Logo alt="yieldthoughts.com logo" src="/static/images/logo.svg" />
     </div>
   );
 }

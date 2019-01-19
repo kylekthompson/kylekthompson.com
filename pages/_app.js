@@ -39,6 +39,10 @@ export default class MyApp extends App {
               <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5" />
               <link rel="shortcut icon" href="/static/favicon.ico" />
               <meta name="theme-color" content={theme.colors.background} />
+              <meta name="description" content="Kyle Thompson's personal blog" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <meta name="application-name" content="yieldthoughts" />
+              <meta name="referrer" content="same-origin" />
               <title>yield([&#128173;, &#128173;, &#128173;])</title>
             </Head>
             <Component {...pageProps} />
