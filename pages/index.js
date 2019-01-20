@@ -33,9 +33,9 @@ export default function Index() {
       <Greeting>Hello!</Greeting>
       <Me src="/static/images/me.png" />
       <AboutMe>
-        I&apos;m Kyle Thompson. This is a place for my thoughts on mostly programming-related topics. I'm a Software
-        Engineer at <A href="https://root.engineering/" target="_blank" rel="noopener norefferer">Root Insurance</A>.
-        Everything I write here is my own opinion.
+        I&apos;m Kyle Thompson, a Software Engineer at&nbsp;
+        <A href="https://root.engineering/" target="_blank" rel="noopener norefferer">Root Insurance</A>. This is a
+        place for my thoughts on mostly programming-related topics. Everything I write here is my own opinion.
       </AboutMe>
     </Container>
   );
