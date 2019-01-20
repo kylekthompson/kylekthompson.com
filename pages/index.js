@@ -20,18 +20,25 @@ const AboutMe = styled(P)`
   max-width: 500px;
 `;
 
-const Me = styled.img`
+const MeContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.greys.light};
   border-radius: 50%;
+  height: 250px;
+  width: 250px;
   margin-bottom: 32px;
-  max-width: 250px;
+`;
+
+const Me = styled.img`
+  width: 100%;
 `;
 
 export default function Index() {
   return (
     <Container>
       <Greeting>Hello!</Greeting>
-      <Me src="/static/images/me.png" />
+      <MeContainer>
+        <Me src="/static/images/me.png" />
+      </MeContainer>
       <AboutMe>
         I&apos;m Kyle Thompson, a Software Engineer at&nbsp;
         <A href="https://root.engineering/" target="_blank" rel="noopener norefferer">Root Insurance</A>. This is a
