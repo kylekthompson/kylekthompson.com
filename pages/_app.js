@@ -1,8 +1,9 @@
 import App, { Container } from "next/app";
 import Head from 'next/head';
+import Header from '../components/header';
 import React from "react";
 import reset from "styled-reset";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 
 const theme = {
   colors: {
@@ -11,6 +12,9 @@ const theme = {
     background: "#EEEEEE",
     accent: "#FF5E5B",
     black: "#071013",
+    greys: {
+      light: "#C8C8C8",
+    },
   },
 };
 
@@ -21,6 +25,14 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.colors.background};
     margin: 0;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+`;
+
+const PageContainer = styled.div`
+  margin: 20px;
 `;
 
 export default class MyApp extends App {
@@ -45,7 +57,10 @@ export default class MyApp extends App {
               <meta name="referrer" content="same-origin" />
               <title>yield([&#128173;, &#128173;, &#128173;])</title>
             </Head>
-            <Component {...pageProps} />
+            <Header />
+            <PageContainer>
+              <Component {...pageProps} />
+            </PageContainer>
           </>
         </ThemeProvider>
       </Container>
