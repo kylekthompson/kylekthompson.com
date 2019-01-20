@@ -1,0 +1,4 @@
+http://yieldthoughts.netlify.com/* http://yieldthoughts.com/:splat 301!
+https://yieldthoughts.netlify.com/* https://yieldthoughts.com/:splat 301!
+http://www.yieldthoughts.com/* https://yieldthoughts.com/:splat 301!
+https://www.yieldthoughts.com/* https://yieldthoughts.com/:splat 301!
