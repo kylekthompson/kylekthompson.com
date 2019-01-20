@@ -6,6 +6,7 @@ module.exports = {
       {
         ssr: true,
         displayName: true,
+        preprocess: false,
       },
     ],
   ],
