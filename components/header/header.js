@@ -1,3 +1,4 @@
+import ActiveLink from './active-link';
 import React from 'react';
 import Link from 'next/link'
 import styled from 'styled-components';
@@ -41,6 +42,10 @@ const Me = styled.img`
   width: 40px;
 `;
 
+const NavigationContainer = styled.div`
+  margin-left: auto;
+`;
+
 export default function Header() {
   return (
     <OuterContainer>
@@ -57,6 +62,9 @@ export default function Header() {
             />
           </LogoAnchor>
         </Link>
+        <NavigationContainer>
+          <ActiveLink href="/history">History</ActiveLink>
+        </NavigationContainer>
       </InnerContainer>
       <Separator />
     </OuterContainer>

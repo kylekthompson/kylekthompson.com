@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${props => props.theme.colors.background};
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
   }
 
@@ -55,6 +56,7 @@ export default class MyApp extends App {
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <meta name="application-name" content="yieldthoughts" />
               <meta name="referrer" content="same-origin" />
+              <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
               <title>yield([&#128173;, &#128173;, &#128173;])</title>
             </Head>
             <Header />
