@@ -8,8 +8,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  max-width: 1000px;
-  padding: 20px 0;
+  max-width: 1040px;
+  padding: 20px;
 `;
 
 const LogoAnchor = styled.a`
