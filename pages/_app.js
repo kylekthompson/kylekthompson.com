@@ -1,6 +1,6 @@
 import App, { Container } from "next/app";
 import Head from 'next/head';
-import Header from '../components/header';
+import Header, { height } from '../components/header';
 import React from "react";
 import reset from "styled-reset";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   body {
-    background-color: ${props => props.theme.colors.background};
+    background-color: ${(props) => props.theme.colors.background};
     font-family: 'Open Sans', sans-serif;
     margin: 0;
   }
@@ -33,7 +33,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const PageContainer = styled.div`
+  display: flex;
+  flex: 1;
   margin: 20px;
+  min-height: calc(100vh - ${height}px - 40px);
 `;
 
 export default class MyApp extends App {
@@ -43,7 +46,6 @@ export default class MyApp extends App {
       <Container>
         <ThemeProvider theme={theme}>
           <>
-            <GlobalStyle />
             <Head>
               <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
               <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
@@ -59,6 +61,7 @@ export default class MyApp extends App {
               <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
               <title>yield([&#128173;, &#128173;, &#128173;])</title>
             </Head>
+            <GlobalStyle />
             <Header />
             <PageContainer>
               <Component {...pageProps} />
