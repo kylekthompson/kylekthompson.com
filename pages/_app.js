@@ -1,6 +1,7 @@
 import App, { Container } from "next/app";
 import Head from 'next/head';
-import Header, { height } from '../components/header';
+import Header, { height as headerHeight } from '../components/header';
+import Footer, { height as footerHeight } from '../components/footer';
 import React from "react";
 import reset from "styled-reset";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
@@ -37,7 +38,7 @@ const PageContainer = styled.div`
   display: flex;
   flex: 1;
   margin: 20px;
-  min-height: calc(100vh - ${height}px - 40px);
+  min-height: calc(100vh - ${headerHeight}px - ${footerHeight}px - 40px);
 `;
 
 export default class MyApp extends App {
@@ -67,6 +68,7 @@ export default class MyApp extends App {
             <PageContainer>
               <Component {...pageProps} />
             </PageContainer>
+            <Footer />
           </>
         </ThemeProvider>
       </Container>
