@@ -37,7 +37,10 @@ export default function Index() {
     <Container>
       <Greeting>Hello!</Greeting>
       <MeContainer>
-        <Me src="/static/images/me.png" />
+        <Me
+          alt="Image of Kyle Thompson"
+          src="/static/images/me.webp"
+        />
       </MeContainer>
       <AboutMe>
         I&apos;m Kyle Thompson, a Software Engineer at&nbsp;
