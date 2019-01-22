@@ -45,7 +45,7 @@ export default function Footer({ date = new Date() }) {
   return (
     <Container>
       <FooterP>View the <Source />.</FooterP>
-      <CopyrightP>Copyright &copy; {date.getFullYear()} Kyle Thompson</CopyrightP>
+      <CopyrightP>Copyright &copy; {date.getFullYear()}</CopyrightP>
     </Container>
   );
 }
