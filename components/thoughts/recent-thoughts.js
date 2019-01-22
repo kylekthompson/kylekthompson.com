@@ -1,4 +1,5 @@
 import A from '../typography/a';
+import Link from 'next/link';
 import P from '../typography/p';
 import React from 'react';
 import styled from 'styled-components';
@@ -31,7 +32,9 @@ function recentThoughts(allThoughts = thoughts) {
 function Thought({ thought }) {
   return (
     <ThoughtContainer>
-      <Title href={thought.href}>{thought.title}</Title>
+      <Link href={thought.href}>
+        <Title>{thought.title}</Title>
+      </Link>
       <P>{formatPostDate(thought.date)}</P>
     </ThoughtContainer>
   );

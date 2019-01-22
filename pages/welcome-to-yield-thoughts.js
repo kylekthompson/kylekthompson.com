@@ -13,7 +13,7 @@ const YIELD_CODE = code(`
   end
 `);
 
-export default function Welcome() {
+export default function WelcomeToYieldThoughts() {
   return (
     <BlogPost
       date={new Date(2019, 0, 21)}
