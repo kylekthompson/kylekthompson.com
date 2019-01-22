@@ -31,7 +31,7 @@ export default function WelcomeToYieldThoughts() {
         use other languages where appropriate and I enjoy tinkering with Elixir on the side).
       </Paragraph>
       <Paragraph>
-        Oh! One last thing (so I can test displaying code and in case anyone is curious): the name of the blog comes
+        Oh! One last thing (so I can test displaying code and in case anyone is curious)- the name of the blog comes
         from Ruby's yield keyword:
       </Paragraph>
       <Code language="ruby" code={YIELD_CODE} />
