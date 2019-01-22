@@ -13,6 +13,7 @@ const Container = styled.div`
 const Pre = styled.pre`
   border-radius: 10px;
   font-family: monospace;
+  line-height: 1.6;
   margin-top: 30px;
   overflow: auto;
   width: 100%;
