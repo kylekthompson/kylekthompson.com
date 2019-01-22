@@ -3,6 +3,7 @@ import H2 from '../typography/h2';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
+import { formatPostDate } from '../../models/date';
 
 const Container = styled.div`
   display: flex;
@@ -22,15 +23,6 @@ const Date = styled(H2)`
   font-size: 14px;
 `;
 
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June', 'July',
-  'August', 'September', 'October', 'November', 'December'
-];
-
-function formatDate(date) {
-  return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-}
-
 export default function BlogPost({ children, date, title }) {
   return (
     <Container>
@@ -38,7 +30,7 @@ export default function BlogPost({ children, date, title }) {
         <title>yield([&#128173;, &#128173;, &#128173;]) - {title}</title>
       </Head>
       <Title>{title}</Title>
-      <Date>{formatDate(date)}</Date>
+      <Date>{formatPostDate(date)}</Date>
       {children}
     </Container>
   );

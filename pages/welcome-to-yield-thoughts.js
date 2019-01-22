@@ -17,7 +17,7 @@ export default function Welcome() {
   return (
     <BlogPost
       date={new Date(2019, 0, 21)}
-      title="Welcome!"
+      title={'Welcome to yield(thoughts)!'}
     >
       <Paragraph>
         So, I'm brand-new to the whole &quot;blogging&quot; thing, but I figured I&apos;d give it a go. This post is
@@ -31,8 +31,8 @@ export default function Welcome() {
         use other languages where appropriate and I enjoy tinkering with Elixir on the side).
       </Paragraph>
       <Paragraph>
-        Oh! One last thing (so I can test displaying code and in case anyone is curious): the name of the blog (yield
-        thoughts) comes from Ruby's yield keyword:
+        Oh! One last thing (so I can test displaying code and in case anyone is curious): the name of the blog comes
+        from Ruby's yield keyword:
       </Paragraph>
       <Code language="ruby" code={YIELD_CODE} />
     </BlogPost>

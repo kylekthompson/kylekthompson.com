@@ -1,9 +1,11 @@
 import A from '../components/typography/a';
 import H1 from '../components/typography/h1';
+import H2 from '../components/typography/h2';
 import Image from '../components/image';
 import P from '../components/typography/p';
 import React from 'react';
 import styled from "styled-components";
+import { RecentThoughts } from '../components/thoughts';
 
 const Container = styled.div`
   align-items: center;
@@ -14,7 +16,7 @@ const Container = styled.div`
 `;
 
 const Greeting = styled(H1)`
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 `;
 
 const AboutMe = styled(P)`
@@ -26,11 +28,15 @@ const MeContainer = styled.div`
   border-radius: 50%;
   height: 250px;
   width: 250px;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 `;
 
 const Me = styled(Image)`
   width: 100%;
+`;
+
+const RecentThoughtsHeader = styled(H2)`
+  margin: 30px 0;
 `;
 
 export default function Index() {
@@ -48,6 +54,8 @@ export default function Index() {
         <A href="https://root.engineering/" target="_blank" rel="noopener norefferer">Root Insurance</A>. This is a
         place for my thoughts on mostly programming-related topics. Everything I write here is my own opinion.
       </AboutMe>
+      <RecentThoughtsHeader>Recent Thoughts</RecentThoughtsHeader>
+      <RecentThoughts />
     </Container>
   );
 }
