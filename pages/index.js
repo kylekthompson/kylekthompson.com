@@ -1,5 +1,6 @@
 import A from '../components/typography/a';
 import H1 from '../components/typography/h1';
+import Image from '../components/image';
 import P from '../components/typography/p';
 import React from 'react';
 import styled from "styled-components";
@@ -28,7 +29,7 @@ const MeContainer = styled.div`
   margin-bottom: 32px;
 `;
 
-const Me = styled.img`
+const Me = styled(Image)`
   width: 100%;
 `;
 
@@ -39,7 +40,7 @@ export default function Index() {
       <MeContainer>
         <Me
           alt="Image of Kyle Thompson"
-          src="/static/images/me.webp"
+          src="/static/images/me"
         />
       </MeContainer>
       <AboutMe>
