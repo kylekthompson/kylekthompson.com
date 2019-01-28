@@ -25,7 +25,11 @@ const Title = styled(A)`
 
 const THOUGHT_LIMIT = 5;
 
-function recentThoughts(allThoughts = thoughts) {
+function recentThoughts() {
+  const allThoughts = thoughts.map((thought) => ({
+    ...thought,
+    date: new Date(thought.date),
+  }));
   return [...allThoughts].sort((a, b) => b.date - a.date).filter((_, index) => index < THOUGHT_LIMIT);
 }
 
