@@ -50,7 +50,7 @@ export default function Index() {
         />
       </MeContainer>
       <AboutMe>
-        I&apos;m Kyle Thompson, a Software Engineer at&nbsp;
+        I&rsquo;m Kyle Thompson, a Software Engineer at&nbsp;
         <A href="https://root.engineering/" target="_blank" rel="noopener norefferer">Root Insurance</A>. This is a
         place for my thoughts on mostly programming-related topics. Everything I write here is my own opinion.
       </AboutMe>

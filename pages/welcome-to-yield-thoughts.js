@@ -17,10 +17,10 @@ export default function WelcomeToYieldThoughts() {
   return (
     <BlogPost
       date={new Date(2019, 0, 21)}
-      title={'Welcome to yield(thoughts)!'}
+      title="Welcome to yield(thoughts)!"
     >
       <Paragraph>
-        So, I'm brand-new to the whole &quot;blogging&quot; thing, but I figured I&apos;d give it a go. This post is
+        So, I&rsquo;m brand-new to the whole &ldquo;blogging&rdquo; thing, but I figured I&rsquo;d give it a go. This post is
         mostly just to serve as a placeholder so I can make sure everything looks ok before I actually get to the good
         stuff, but I might as well mention what I think I'll end up talking about here.
       </Paragraph>
@@ -32,7 +32,7 @@ export default function WelcomeToYieldThoughts() {
       </Paragraph>
       <Paragraph>
         Oh! One last thing (so I can test displaying code and in case anyone is curious)- the name of the blog comes
-        from Ruby's yield keyword:
+        from Ruby&rsquo;s yield keyword:
       </Paragraph>
       <Code language="ruby" code={YIELD_CODE} />
     </BlogPost>
