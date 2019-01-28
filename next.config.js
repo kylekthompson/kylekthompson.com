@@ -13,5 +13,8 @@ module.exports = {
     '/': {
       page: '/',
     },
+    '/history': {
+      page: '/history',
+    },
   }),
 };
