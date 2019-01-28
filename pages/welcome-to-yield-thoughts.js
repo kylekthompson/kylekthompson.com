@@ -22,7 +22,7 @@ export default function WelcomeToYieldThoughts() {
       <Paragraph>
         So, I&rsquo;m brand-new to the whole &ldquo;blogging&rdquo; thing, but I figured I&rsquo;d give it a go. This post is
         mostly just to serve as a placeholder so I can make sure everything looks ok before I actually get to the good
-        stuff, but I might as well mention what I think I'll end up talking about here.
+        stuff, but I might as well mention what I think I&rsquo;ll end up talking about here.
       </Paragraph>
       <Paragraph>
         At the time of writing, I am a Software Engineer at&nbsp;
