@@ -4,12 +4,24 @@ import React from 'react';
 import { code } from '../models/string';
 
 const YIELD_CODE = code(`
+  class Thought
+    attr_reader :n
+
+    def initialize(n)
+      @n = n
+    end
+
+    def blog_about
+      "thought #{n}"
+    end
+  end
+
   def with_thoughts
-    yield(["thought 1", "thought 2", "thought 3"])
+    yield([Thought.new(1), Thought.new(2), Thought.new(3)])
   end
 
   with_thoughts do |thoughts|
-    thoughts.each { |thought| blog_about(thought) }
+    thoughts.each(&:blog_about)
   end
 `);
 

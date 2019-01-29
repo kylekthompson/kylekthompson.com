@@ -1,44 +1,25 @@
-import Highlight, { defaultProps } from 'prism-react-renderer';
 import React from 'react';
-import styled from 'styled-components';
-import vsDarkPlus from 'prism-react-renderer/themes/vsDarkPlus';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/styles/prism';
 
-const Container = styled.div`
-  float: left;
-  min-width: 100%;
-  overflow: auto;
-  padding: 20px;
-`;
-
-const Pre = styled.pre`
-  border-radius: 10px;
-  font-family: monospace;
-  line-height: 1.6;
-  margin-top: 30px;
-  overflow: auto;
-  width: 100%;
-`;
-
-function renderCode({ className, getLineProps, getTokenProps, style, tokens }) {
-  return (
-    <Pre className={className} style={style}>
-      <Container>
-        {tokens.map((line, i) => (
-          <div {...getLineProps({ line, key: i })}>
-            {line.map((token, key) => (
-              <span {...getTokenProps({ token, key })} />
-            ))}
-          </div>
-        ))}
-      </Container>
-    </Pre>
-  );
-}
+const STYLE = {
+  borderRadius: '10px',
+  fontFamily: 'monospace',
+  fontSize: '16px',
+  lineHeight: '1.6',
+  margin: '30px 0 0',
+  overflow: 'auto',
+  width: '100%',
+};
 
 export default function Code({ code, language }) {
   return (
-    <Highlight {...defaultProps} code={code} language={language} theme={vsDarkPlus}>
-      {renderCode}
-    </Highlight>
+    <SyntaxHighlighter
+      language={language}
+      style={atomDark}
+      customStyle={STYLE}
+    >
+      {code}
+    </SyntaxHighlighter>
   );
 }

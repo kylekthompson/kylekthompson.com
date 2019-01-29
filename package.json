@@ -8,9 +8,9 @@
   "license": "MIT",
   "dependencies": {
     "next": "^7.0.2",
-    "prism-react-renderer": "^0.1.5",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-syntax-highlighter": "^10.1.2",
     "styled-components": "^4.1.3",
     "styled-reset": "^1.6.4"
   },
