@@ -1,25 +1,100 @@
+import Highlight, { defaultProps } from 'prism-react-renderer';
 import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/styles/prism';
+import styled, { css } from 'styled-components';
+import theme from 'prism-react-renderer/themes/nightOwl';
 
-const STYLE = {
-  borderRadius: '10px',
-  fontFamily: 'monospace',
-  fontSize: '16px',
-  lineHeight: '1.6',
-  margin: '30px 0 0',
-  overflow: 'auto',
-  width: '100%',
-};
+const Pre = styled.pre`
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 30px 0 0;
+  overflow: auto;
+  padding: 10px 0;
+  width: 100%;
+`;
 
-export default function Code({ code, language }) {
+const Container = styled.div`
+  float: left;
+  padding: 0 10px 0 0;
+`;
+
+const Line = styled.div`
+  ${({ highlighted, theme }) => {
+    if (highlighted) {
+      return css`
+        background-color: ${theme.colors.accentTransparent};
+        border-left: 5px solid ${theme.colors.accent};
+      `;
+    }
+
+    return css`
+      border-left: 5px solid transparent;
+    `;
+  }}
+`;
+
+const LineNumber = styled.span`
+  display: inline-block;
+  width: 2em;
+  user-select: none;
+  opacity: 0.3;
+  padding-left: 5px;
+`;
+
+function range(start, end) {
+  return Array(end - start + 1).fill().map((_, index) => start + index);
+}
+
+function highlightAppliesToLine(highlight, lineNumber) {
+  if (typeof highlight === 'number') {
+    return highlight === lineNumber;
+  }
+
+  if (typeof highlight === 'string') {
+    const [lower, upper] = highlight.split('-').map((num) => parseInt(num, 10)).sort();
+    const lines = range(lower, upper);
+    return lines.includes(lineNumber);
+  }
+
+  return false;
+}
+
+function isLineHighlighted(highlights, lineNumber) {
+  return highlights.some((highlight) => highlightAppliesToLine(highlight, lineNumber));
+}
+
+export default function Code({ code, language, highlights = [] }) {
   return (
-    <SyntaxHighlighter
+    <Highlight
+      {...defaultProps}
+      code={code}
       language={language}
-      style={atomDark}
-      customStyle={STYLE}
+      theme={theme}
     >
-      {code}
-    </SyntaxHighlighter>
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <Pre className={className} style={style}>
+          <Container>
+            {tokens.map((line, lineKey) => (
+              <Line
+                key={lineKey}
+                highlighted={isLineHighlighted(highlights, lineKey + 1)}
+                {...getLineProps({ line, key: lineKey })}
+              >
+                <LineNumber>
+                  {lineKey + 1}
+                </LineNumber>
+                {line.map((token, tokenKey) => (
+                  <span
+                    key={tokenKey}
+                    {...getTokenProps({ token, key: tokenKey })}
+                  />
+                ))}
+              </Line>
+            ))}
+          </Container>
+        </Pre>
+      )}
+    </Highlight>
   );
 }

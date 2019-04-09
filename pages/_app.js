@@ -12,6 +12,7 @@ const theme = {
     secondary: "#3E7CB1",
     background: "#EEEEEE",
     accent: "#FF5E5B",
+    accentTransparent: "#FF5E5B36",
     black: "#333333",
     greys: {
       light: "#C8C8C8",
@@ -27,6 +28,11 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.colors.black};
     font-family: 'Open Sans', sans-serif;
     margin: 0;
+  }
+
+  ::selection {
+    background-color: ${({ theme }) => theme.colors.accent};
+    color: white;
   }
 
   * {
