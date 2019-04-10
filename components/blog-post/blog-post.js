@@ -1,5 +1,5 @@
 import H1 from '../typography/h1';
-import H2 from '../typography/h2';
+import P from '../typography/p';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
@@ -18,9 +18,11 @@ const Title = styled(H1)`
   margin-bottom: 5px;
 `;
 
-const Date = styled(H2)`
+const Date = styled(P)`
   align-self: center;
   font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
 `;
 
 export default function BlogPost({ children, date, title }) {

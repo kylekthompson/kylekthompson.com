@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "next": "^7.0.2",
+    "prettier": "^1.16.4",
     "prism-react-renderer": "^0.1.6",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -15,6 +16,7 @@
     "styled-reset": "^1.6.4"
   },
   "scripts": {
+    "format": "prettier --write './**/*.{js,json}'",
     "dev": "next",
     "build": "next build",
     "export": "next export",

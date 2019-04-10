@@ -4,7 +4,7 @@ import H2 from '../components/typography/h2';
 import Image from '../components/image';
 import P from '../components/typography/p';
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { RecentThoughts } from '../components/thoughts';
 
 const Container = styled.div`
@@ -44,15 +44,19 @@ export default function Index() {
     <Container>
       <Greeting>Hello!</Greeting>
       <MeContainer>
-        <Me
-          alt="Image of Kyle Thompson"
-          src="/static/images/me"
-        />
+        <Me alt="Image of Kyle Thompson" src="/static/images/me" />
       </MeContainer>
       <AboutMe>
-        I&rsquo;m Kyle Thompson, a Software Engineer at&nbsp;
-        <A href="https://root.engineering/" target="_blank" rel="noopener norefferer">Root Insurance</A>. This is a
-        place for my thoughts on mostly programming-related topics. Everything I write here is my own opinion.
+        I&rsquo;m Kyle Thompson, a Software Engineer at{' '}
+        <A
+          href="https://root.engineering/"
+          target="_blank"
+          rel="noopener norefferer"
+        >
+          Root Insurance
+        </A>
+        . This is a place for my thoughts on mostly programming-related topics.
+        Everything I write here is my own opinion.
       </AboutMe>
       <RecentThoughtsHeader>Recent Thoughts</RecentThoughtsHeader>
       <RecentThoughts />

@@ -44,7 +44,9 @@ export const height = 56;
 export default function Footer({ date = new Date() }) {
   return (
     <Container>
-      <FooterP>View the <Source />.</FooterP>
+      <FooterP>
+        View the <Source />.
+      </FooterP>
       <CopyrightP>Copyright &copy; {date.getFullYear()}</CopyrightP>
     </Container>
   );

@@ -16,10 +16,12 @@ const Pre = styled.pre`
 
 const Container = styled.div`
   float: left;
-  padding: 0 10px 0 0;
+  min-width: 100%;
 `;
 
 const Line = styled.div`
+  padding: 0 10px 0 0;
+
   ${({ highlighted, theme }) => {
     if (highlighted) {
       return css`
@@ -43,7 +45,9 @@ const LineNumber = styled.span`
 `;
 
 function range(start, end) {
-  return Array(end - start + 1).fill().map((_, index) => start + index);
+  return Array(end - start + 1)
+    .fill()
+    .map((_, index) => start + index);
 }
 
 function highlightAppliesToLine(highlight, lineNumber) {
@@ -52,7 +56,11 @@ function highlightAppliesToLine(highlight, lineNumber) {
   }
 
   if (typeof highlight === 'string') {
-    const [lower, upper] = highlight.split('-').map((num) => parseInt(num, 10)).sort();
+    const [lower, upper] = highlight
+      .split('-')
+      .map((num) => parseInt(num, 10))
+      .sort((left, right) => left - right);
+
     const lines = range(lower, upper);
     return lines.includes(lineNumber);
   }
@@ -61,17 +69,14 @@ function highlightAppliesToLine(highlight, lineNumber) {
 }
 
 function isLineHighlighted(highlights, lineNumber) {
-  return highlights.some((highlight) => highlightAppliesToLine(highlight, lineNumber));
+  return highlights.some((highlight) =>
+    highlightAppliesToLine(highlight, lineNumber)
+  );
 }
 
 export default function Code({ code, language, highlights = [] }) {
   return (
-    <Highlight
-      {...defaultProps}
-      code={code}
-      language={language}
-      theme={theme}
-    >
+    <Highlight {...defaultProps} code={code} language={language} theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={style}>
           <Container>
@@ -81,9 +86,7 @@ export default function Code({ code, language, highlights = [] }) {
                 highlighted={isLineHighlighted(highlights, lineKey + 1)}
                 {...getLineProps({ line, key: lineKey })}
               >
-                <LineNumber>
-                  {lineKey + 1}
-                </LineNumber>
+                <LineNumber>{lineKey + 1}</LineNumber>
                 {line.map((token, tokenKey) => (
                   <span
                     key={tokenKey}

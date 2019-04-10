@@ -25,21 +25,30 @@ function expandDirectories(basePath, filesAndDirectories) {
 
 function findFiles(path) {
   const filesAndDirectories = fs.readdirSync(path);
-  const publicFilesAndDirectories = filesAndDirectories.filter((path) => !path.startsWith('_'));
+  const publicFilesAndDirectories = filesAndDirectories.filter(
+    (path) => !path.startsWith('_')
+  );
   const publicFiles = expandDirectories(path, publicFilesAndDirectories);
   return flatten(publicFiles);
 }
 
 const hrefs = findFiles('./pages')
-  .map((file) => file.endsWith('/index.js') ? file.replace('/index.js', '/') : file.replace('.js', ''))
+  .map((file) =>
+    file.endsWith('/index.js')
+      ? file.replace('/index.js', '/')
+      : file.replace('.js', '')
+  )
   .map((file) => file.replace('./pages', ''));
 
-const pages = hrefs.reduce((pages, href) => ({
-  ...pages,
-  [href]: {
-    page: href,
-  },
-}), {});
+const pages = hrefs.reduce(
+  (pages, href) => ({
+    ...pages,
+    [href]: {
+      page: href,
+    },
+  }),
+  {}
+);
 
 module.exports = {
   exportPathMap: () => pages,

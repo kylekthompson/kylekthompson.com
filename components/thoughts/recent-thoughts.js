@@ -30,7 +30,10 @@ function recentThoughts() {
     ...thought,
     date: new Date(thought.date),
   }));
-  return [...allThoughts].sort((a, b) => b.date - a.date).filter((_, index) => index < THOUGHT_LIMIT);
+
+  return [...allThoughts]
+    .sort((a, b) => b.date - a.date)
+    .filter((_, index) => index < THOUGHT_LIMIT);
 }
 
 function Thought({ thought }) {

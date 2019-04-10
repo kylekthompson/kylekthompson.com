@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-const P = styled.p`
+const Emphasis = styled.em`
   line-height: 1.6;
   font-size: 18px;
+  font-style: italic;
   font-weight: normal;
 `;
 
-export default P;
+export default Emphasis;

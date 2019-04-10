@@ -6,13 +6,24 @@ export default function stripLeadingWhitespace(string) {
   }
 
   const lines = string.split('\n');
-  const allWhitespace = lines.map((line) => {
-    const match = line.match(WHITESPACE_REGEX);
-    if (!match) { return null; } // no match means the line is empty
-    return match[1];
-  }).filter((whitespace) => whitespace !== null);
+  const allWhitespace = lines
+    .map((line) => {
+      const match = line.match(WHITESPACE_REGEX);
 
-  const shortestWhitespace = allWhitespace.sort((left, right) => left.length - right.length)[0];
+      // no match means the line is empty
+      if (!match) {
+        return null;
+      }
 
-  return lines.map((line) => line.replace(new RegExp(`^${shortestWhitespace}`), '')).join('\n');
+      return match[1];
+    })
+    .filter((whitespace) => whitespace !== null);
+
+  const shortestWhitespace = allWhitespace.sort(
+    (left, right) => left.length - right.length
+  )[0];
+
+  return lines
+    .map((line) => line.replace(new RegExp(`^${shortestWhitespace}`), ''))
+    .join('\n');
 }
