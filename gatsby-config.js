@@ -1,6 +1,13 @@
 module.exports = {
   pathPrefix: '/',
-  siteMetadata: {},
+  siteMetadata: {
+    title: 'yield(thoughts)',
+    description: 'Kyle Thompson\'s personal blog',
+    url: 'https://yieldthoughts.com',
+    author: {
+      twitter: '@kylekthomp',
+    },
+  },
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
@@ -17,7 +24,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-mdx`,
+      resolve: 'gatsby-mdx',
       options: {
         defaultLayouts: {
           default: `${__dirname}/src/templates/markdown-page.js`,
@@ -31,34 +38,35 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               backgroundColor: '#EEEEEE',
-              maxWidth: 1035,
+              maxWidth: 720,
             },
           },
         ],
       },
     },
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-plugin-styled-components',
+      options: {
+        ssr: true,
+        displayName: true,
+        preprocess: false,
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'yield(thoughts)',
-        description: "Kyle Thompson's personal blog",
         short_name: 'yield(thoughts)',
+        description: "Kyle Thompson's personal blog",
         start_url: '/',
         background_color: '#EEEEEE',
         theme_color: '#054A91',
         display: 'standalone',
-        icons: [
-          {
-            src: '/static/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-        ],
+        icon: 'src/assets/images/icon.png',
       },
     },
     {
@@ -67,12 +75,6 @@ module.exports = {
         trackingId: 'UA-131529400-1',
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-typography',
-    //   options: {
-    //     pathToConfigModule: 'src/models/typography',
-    //   },
-    // },
     'gatsby-plugin-offline',
   ],
 };

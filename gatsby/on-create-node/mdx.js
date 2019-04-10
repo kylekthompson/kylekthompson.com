@@ -57,6 +57,24 @@ function onCreateMdxNode({ actions, getNode, node }) {
   });
 
   createNodeField({
+    name: 'bannerAlt',
+    node,
+    value: node.frontmatter.bannerAlt,
+  });
+
+  createNodeField({
+    name: 'bannerCredit',
+    node,
+    value: node.frontmatter.bannerCredit,
+  });
+
+  createNodeField({
+    name: 'bannerImage',
+    node,
+    value: node.frontmatter.bannerImage,
+  });
+
+  createNodeField({
     name: 'categories',
     node,
     value: node.frontmatter.categories || [],

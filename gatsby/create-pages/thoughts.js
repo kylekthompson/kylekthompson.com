@@ -40,7 +40,7 @@ function createThoughts({ createPage, thoughts }) {
   thoughts.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve('./src/templates/thought.js'),
+      component: path.resolve('./src/templates/thought/index.js'),
       context: {
         id: node.id,
       },
