@@ -1,15 +1,26 @@
 import React from 'react';
 import defaultImage from '../../assets/images/icon.png';
 import { Helmet } from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby';
 
-export default function SEO({ title, description, image = null, isArticle = false, slug = null, meta = [] }) {
-  const { site: { siteMetadata } } = useStaticQuery(METADATA_QUERY);
+export default function SEO({
+  title,
+  description,
+  image = null,
+  isArticle = false,
+  slug = null,
+  meta = [],
+}) {
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery(METADATA_QUERY);
 
   const seoTitle = title || siteMetadata.title;
   const seoDescription = description || siteMetadata.description;
-  const seoUrl = slug ? `${siteMetadata.url}/${slug.replace(/^\/{1}/, "")}` : siteMetadata.url;
-  const seoImage = image ? `${siteMetadata.url}${image}` : `${defaultImage}`
+  const seoUrl = slug
+    ? `${siteMetadata.url}/${slug.replace(/^\/{1}/, '')}`
+    : siteMetadata.url;
+  const seoImage = image ? `${siteMetadata.url}${image}` : `${defaultImage}`;
 
   const seoMeta = [
     {
@@ -61,12 +72,7 @@ export default function SEO({ title, description, image = null, isArticle = fals
     });
   }
 
-  return (
-    <Helmet
-      title={title}
-      meta={[...seoMeta, ...meta]}
-    />
-  );
+  return <Helmet title={title} meta={[...seoMeta, ...meta]} />;
 }
 
 const METADATA_QUERY = graphql`

@@ -61,7 +61,9 @@ const FooterContainer = styled.div`
 `;
 
 export default function Layout({ children }) {
-  const { site: { siteMetadata } } = useStaticQuery(METADATA_QUERY);
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery(METADATA_QUERY);
 
   return (
     <ThemeProvider theme={theme}>

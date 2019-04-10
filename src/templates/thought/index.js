@@ -8,9 +8,16 @@ import SEO from '../../components/seo';
 import { graphql } from 'gatsby';
 
 export default function Thought({ data: { mdx } }) {
-  const { bannerCredit, bannerImage, bannerAlt, date, description, plainTextDescription, slug, title } = mdx.fields;
-
-  console.log(mdx);
+  const {
+    bannerCredit,
+    bannerImage,
+    bannerAlt,
+    date,
+    description,
+    plainTextDescription,
+    slug,
+    title,
+  } = mdx.fields;
 
   return (
     <Layout>
@@ -26,11 +33,10 @@ export default function Thought({ data: { mdx } }) {
         <div>
           <h3>{date}</h3>
         </div>
-        <Image
-          alt={bannerAlt}
-          fluid={bannerImage.childImageSharp.fluid}
-        />
-        <Markdown renderers={{ link: BannerCreditLink }}>{bannerCredit}</Markdown>
+        <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />
+        <Markdown renderers={{ link: BannerCreditLink }}>
+          {bannerCredit}
+        </Markdown>
         {description ? <Markdown>{description}</Markdown> : null}
         <MDXRenderer>{mdx.code.body}</MDXRenderer>
       </article>
@@ -51,7 +57,7 @@ export const pageQuery = graphql`
         bannerCredit
         bannerImage {
           childImageSharp {
-            fluid(maxWidth: 720, traceSVG: {color: "#EEEEEE"}, quality: 75) {
+            fluid(maxWidth: 720, traceSVG: { color: "#EEEEEE" }, quality: 75) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }

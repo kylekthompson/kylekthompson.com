@@ -26,10 +26,7 @@ export default function Header() {
   return (
     <Container>
       <Link to="/">
-        <Logo
-          alt="yieldthoughts.com logo"
-          src={logo}
-        />
+        <Logo alt="yieldthoughts.com logo" src={logo} />
       </Link>
       <NavigationContainer>
         <Link to="/thoughts">Thoughts</Link>

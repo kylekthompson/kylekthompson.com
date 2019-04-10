@@ -2,7 +2,7 @@ module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     title: 'yield(thoughts)',
-    description: 'Kyle Thompson\'s personal blog',
+    description: "Kyle Thompson's personal blog",
     url: 'https://yieldthoughts.com',
     author: {
       twitter: '@kylekthomp',
