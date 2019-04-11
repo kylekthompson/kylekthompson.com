@@ -6,7 +6,11 @@ import React from 'react';
 import BannerCreditLink from './banner-credit-link';
 import SEO from '../../components/seo';
 import styled from 'styled-components';
-import { BannerCreditWrapper, PostMeta, Title } from '../../components/blog-post';
+import {
+  BannerCreditWrapper,
+  PostMeta,
+  Title,
+} from '../../components/blog-post';
 import { graphql } from 'gatsby';
 
 const PaddingWrapper = styled.div`
@@ -42,7 +46,9 @@ export default function Thought({ data: { mdx } }) {
         <PaddingWrapper>
           <Title>{title}</Title>
           <div>
-            <PostMeta>{author} - {date}</PostMeta>
+            <PostMeta>
+              {author} - {date}
+            </PostMeta>
           </div>
         </PaddingWrapper>
         <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />

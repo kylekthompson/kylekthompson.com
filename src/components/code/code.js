@@ -73,11 +73,25 @@ function isLineHighlighted(highlights, lineNumber) {
   );
 }
 
-export default function Code({ code, language, className = '', highlights = [] }) {
+export default function Code({
+  code,
+  language,
+  className = '',
+  highlights = [],
+}) {
   return (
     <Highlight {...defaultProps} code={code} language={language} theme={theme}>
-      {({ className: highlightClassName, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre className={[highlightClassName, className].join(' ').trim()} style={style}>
+      {({
+        className: highlightClassName,
+        style,
+        tokens,
+        getLineProps,
+        getTokenProps,
+      }) => (
+        <Pre
+          className={[highlightClassName, className].join(' ').trim()}
+          style={style}
+        >
           <Container>
             {tokens.map((line, lineKey) => (
               <Line

@@ -12,14 +12,14 @@ export const Title = styled.h1`
 
 export const PostMeta = styled.p`
   text-align: center;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 600;
   ${BLOG_MARGIN}
 `;
 
 export const BannerCreditWrapper = styled.div`
   text-align: center;
-  font-size: .9rem;
+  font-size: 0.9rem;
   ${BLOG_MARGIN}
 `;
 
