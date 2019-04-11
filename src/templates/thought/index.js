@@ -20,11 +20,11 @@ const PaddingWrapper = styled.div`
 export default function Thought({ data: { mdx } }) {
   const {
     author,
+    bannerAlt,
     bannerCredit,
     bannerImage,
-    bannerAlt,
     date,
-    plainTextDescription,
+    description,
     slug,
     title,
   } = mdx.fields;
@@ -33,7 +33,7 @@ export default function Thought({ data: { mdx } }) {
     <Layout>
       <SEO
         title={title}
-        description={plainTextDescription}
+        description={description}
         image={bannerImage.childImageSharp.fluid.src}
         isArticle={true}
         slug={slug}
@@ -63,11 +63,7 @@ export const pageQuery = graphql`
   query($id: String!) {
     mdx(fields: { id: { eq: $id } }) {
       fields {
-        title
         author
-        plainTextDescription
-        date(formatString: "MMMM DD, YYYY")
-        slug
         bannerAlt
         bannerCredit
         bannerImage {
@@ -77,6 +73,10 @@ export const pageQuery = graphql`
             }
           }
         }
+        date(formatString: "MMMM DD, YYYY")
+        description
+        slug
+        title
       }
       code {
         body

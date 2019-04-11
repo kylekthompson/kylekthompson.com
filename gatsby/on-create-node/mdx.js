@@ -1,13 +1,4 @@
-const remark = require('remark');
-const stripMarkdownPlugin = require('strip-markdown');
 const { createFilePath } = require('gatsby-source-filesystem');
-
-function stripMarkdown(markdownString) {
-  return remark()
-    .use(stripMarkdownPlugin)
-    .processSync(markdownString)
-    .toString();
-}
 
 function buildSlug({ getNode, node }) {
   if (node.fileAbsolutePath.includes('content/thoughts/')) {
@@ -90,12 +81,6 @@ function onCreateMdxNode({ actions, getNode, node }) {
     name: 'published',
     node,
     value: node.frontmatter.published,
-  });
-
-  createNodeField({
-    name: 'plainTextDescription',
-    node,
-    value: stripMarkdown(node.frontmatter.description),
   });
 
   createNodeField({
