@@ -1,14 +1,14 @@
 import { css } from 'styled-components';
 
 const normalText = css`
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.6;
 `;
 
 export default css`
   h1 {
-    font-size: 2rem;
+    font-size: 2.1rem;
     font-weight: 700;
     line-height: 1.4;
   }
@@ -20,25 +20,25 @@ export default css`
   }
 
   h3 {
-    font-size: 1.6rem;
+    font-size: 1.65rem;
     font-weight: 600;
     line-height: 1.4;
   }
 
   h4 {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 600;
     line-height: 1.4;
   }
 
   h5 {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 600;
     line-height: 1.4;
   }
 
   h6 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.4;
   }
