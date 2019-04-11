@@ -5,15 +5,25 @@ import Markdown from 'react-markdown';
 import React from 'react';
 import BannerCreditLink from './banner-credit-link';
 import SEO from '../../components/seo';
+import styled from 'styled-components';
+import { BannerCreditWrapper, PostMeta, Title } from '../../components/blog-post';
 import { graphql } from 'gatsby';
+
+const PaddingWrapper = styled.div`
+  padding: 0 20px;
+
+  @media (min-width: 760px) {
+    padding: 0;
+  }
+`;
 
 export default function Thought({ data: { mdx } }) {
   const {
+    author,
     bannerCredit,
     bannerImage,
     bannerAlt,
     date,
-    description,
     plainTextDescription,
     slug,
     title,
@@ -29,16 +39,21 @@ export default function Thought({ data: { mdx } }) {
         slug={slug}
       />
       <article>
-        <h1>{title}</h1>
-        <div>
-          <h3>{date}</h3>
-        </div>
+        <PaddingWrapper>
+          <Title>{title}</Title>
+          <div>
+            <PostMeta>{author} - {date}</PostMeta>
+          </div>
+        </PaddingWrapper>
         <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />
-        <Markdown renderers={{ link: BannerCreditLink }}>
-          {bannerCredit}
-        </Markdown>
-        {description ? <Markdown>{description}</Markdown> : null}
-        <MDXRenderer>{mdx.code.body}</MDXRenderer>
+        <PaddingWrapper>
+          <BannerCreditWrapper>
+            <Markdown renderers={{ link: BannerCreditLink }}>
+              {bannerCredit}
+            </Markdown>
+          </BannerCreditWrapper>
+          <MDXRenderer>{mdx.code.body}</MDXRenderer>
+        </PaddingWrapper>
       </article>
     </Layout>
   );
@@ -49,7 +64,7 @@ export const pageQuery = graphql`
     mdx(fields: { id: { eq: $id } }) {
       fields {
         title
-        description
+        author
         plainTextDescription
         date(formatString: "MMMM DD, YYYY")
         slug

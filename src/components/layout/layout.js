@@ -1,11 +1,13 @@
 import Footer from '../footer';
 import Header from '../header';
 import React from 'react';
+import mdxComponents from '../mdx';
 import reset from 'styled-reset';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import typography from './typography';
-import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet } from 'react-helmet';
+import { MDXProvider } from '@mdx-js/tag';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const theme = {
   colors: {
@@ -91,7 +93,9 @@ export default function Layout({ children }) {
         </Helmet>
         <ContentContainer>
           <Header />
-          <main>{children}</main>
+          <MDXProvider components={mdxComponents}>
+            <main>{children}</main>
+          </MDXProvider>
         </ContentContainer>
         <FooterContainer>
           <Footer />

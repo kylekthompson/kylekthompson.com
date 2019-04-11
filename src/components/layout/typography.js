@@ -14,7 +14,7 @@ export default css`
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 600;
     line-height: 1.4;
   }
@@ -26,13 +26,13 @@ export default css`
   }
 
   h4 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 600;
     line-height: 1.4;
   }
 
   h5 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
     line-height: 1.4;
   }
