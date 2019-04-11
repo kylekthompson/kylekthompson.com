@@ -10,11 +10,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 0 20px;
-
-  @media (min-width: 760px) {
-    padding: 0;
-  }
+  max-width: 720px;
+  width: calc(100vw - 40px);
 `;
 
 const Greeting = styled.h1`

@@ -14,11 +14,9 @@ import {
 import { graphql } from 'gatsby';
 
 const PaddingWrapper = styled.div`
-  padding: 0 20px;
-
-  @media (min-width: 760px) {
-    padding: 0;
-  }
+  margin: 0 auto;
+  max-width: 720px;
+  width: calc(100vw - 40px);
 `;
 
 export default function Thought({ data: { mdx } }) {

@@ -8,11 +8,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  padding: 20px;
-
-  @media (min-width: 760px) {
-    padding: 20px 0;
-  }
+  max-width: 720px;
+  padding: 20px 0;
+  width: calc(100vw - 40px);
 `;
 
 const Logo = styled.img`
