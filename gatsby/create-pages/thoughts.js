@@ -1,5 +1,6 @@
 const path = require('path');
 
+const THOUGHTS_PER_PAGE = 5;
 const THOUGHTS_QUERY = `
   fragment PostDetails on Mdx {
     fileAbsolutePath
@@ -36,7 +37,7 @@ const THOUGHTS_QUERY = `
   }
 `;
 
-function createThoughts({ createPage, thoughts }) {
+function createPosts({ createPage, thoughts }) {
   thoughts.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
@@ -46,6 +47,41 @@ function createThoughts({ createPage, thoughts }) {
       },
     });
   });
+}
+
+function createHistory({ createPage, thoughts }) {
+  const pages = thoughts.edges.reduce((paginated, thought, index) => {
+    const page = Math.floor(index / THOUGHTS_PER_PAGE);
+
+    if (!paginated[page]) {
+      paginated[page] = [];
+    }
+
+    paginated[page].push(thought.node.id);
+
+    return paginated;
+  }, [])
+
+  pages.forEach((page, index) => {
+    const previousPagePath = `/thoughts/${index + 1}`;
+    const nextPagePath = index === 1 ? '/thoughts' : `/thoughts/${index - 1}`
+    const pagePath = index > 0 ? `/thoughts/${index}` : '/thoughts';
+
+    createPage({
+      path: pagePath,
+      component: path.resolve('./src/templates/thoughts/index.js'),
+      context: {
+        pagination: {
+          page,
+          nextPagePath: index === 0 ? null : nextPagePath,
+          previousPagePath:
+            index === pages.length - 1 ? null : previousPagePath,
+          pageNumber: index + 1,
+          path: pagePath,
+        },
+      },
+    })
+  })
 }
 
 async function getThoughts(graphql) {
@@ -64,7 +100,8 @@ async function getThoughts(graphql) {
 
 async function createThoughtPages({ actions, graphql }) {
   const thoughts = await getThoughts(graphql);
-  createThoughts({ createPage: actions.createPage, thoughts });
+  createPosts({ createPage: actions.createPage, thoughts });
+  createHistory({ createPage: actions.createPage, thoughts });
 }
 
 module.exports = {

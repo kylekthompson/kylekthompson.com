@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 export default function SEO({
   title,
-  description,
+  description = null,
   image = null,
   isArticle = false,
   slug = null,

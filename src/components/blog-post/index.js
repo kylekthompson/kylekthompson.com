@@ -7,7 +7,7 @@ const BLOG_MARGIN = css`
 
 export const Title = styled.h1`
   text-align: center;
-  margin: 20px 0 5px;
+  margin: 20px 0 10px;
 `;
 
 export const PostMeta = styled.p`

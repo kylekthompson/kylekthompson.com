@@ -18,7 +18,8 @@ const theme = {
     accentTransparent: '#FF5E5B36',
     black: '#333333',
     greys: {
-      light: '#C8C8C8',
+      lighter: '#F3F3F3',
+      darker: '#C8C8C8',
     },
   },
 };

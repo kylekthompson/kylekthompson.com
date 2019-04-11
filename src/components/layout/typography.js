@@ -60,7 +60,7 @@ export default css`
 
   code {
     ${normalText}
-    background-color: ${({ theme }) => theme.colors.greys.light};
+    background-color: ${({ theme }) => theme.colors.greys.darker};
     border-radius: 5px;
     font-family: monospace;
     padding: 2px 5px;
