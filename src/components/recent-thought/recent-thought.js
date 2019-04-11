@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 
 const Container = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   max-width: 500px;
 `;
 
@@ -15,6 +15,10 @@ const RecentTitle = styled.h3`
 
 const RecentLink = styled(Link)`
   color: ${({ theme }) => theme.colors.accent};
+`;
+
+const ReadMoreLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const RecentExcerpt = styled.p`
@@ -29,7 +33,7 @@ export default function RecentThought({ thought }) {
       </RecentLink>
       <RecentExcerpt>
         {thought.excerpt}{' '}
-        <RecentLink to={thought.fields.slug}>read more</RecentLink>
+        <ReadMoreLink to={thought.fields.slug}>read more</ReadMoreLink>
       </RecentExcerpt>
     </Container>
   );

@@ -33,11 +33,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  ::selection {
-    background-color: ${({ theme }) => theme.colors.accent};
-    color: white;
-  }
-
   * {
     box-sizing: border-box;
   }
