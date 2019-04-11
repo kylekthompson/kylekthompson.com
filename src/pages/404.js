@@ -1,10 +1,28 @@
+import Layout from '../components/layout';
 import React from 'react';
+import styled from 'styled-components';
 
-const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-);
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 720px;
+  padding-top: 30vh;
+  text-align: center;
+  width: calc(100vw - 40px);
+`;
 
-export default NotFoundPage;
+const Header = styled.h1`
+  margin-bottom: 5px;
+`;
+
+export default function NotFound() {
+  return (
+    <Layout>
+      <Container>
+        <Header>Bummer.</Header>
+        <p>There doesn't seem to be anything here.</p>
+      </Container>
+    </Layout>
+  );
+}
