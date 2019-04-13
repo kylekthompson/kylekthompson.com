@@ -55,27 +55,22 @@ function Navigation({ previous, next }) {
 
   return (
     <NavigationWrapper>
-      {previous && (
-        <LeftNav to={previous}>&larr; Older</LeftNav>
-      )}
-      {next && (
-        <RightNav to={next}>Newer &rarr;</RightNav>
-      )}
+      {previous && <LeftNav to={previous}>&larr; Older</LeftNav>}
+      {next && <RightNav to={next}>Newer &rarr;</RightNav>}
     </NavigationWrapper>
-  )
+  );
 }
 
 export default function Thoughts({ pageContext: { pagination } }) {
   const { allThoughts } = useStaticQuery(ALL_THOUGHTS_QUERY);
   const { path, page, pageNumber, nextPagePath, previousPagePath } = pagination;
-  const thoughts = page.map(id => allThoughts.edges.find((edge) => edge.node.id === id));
+  const thoughts = page.map((id) =>
+    allThoughts.edges.find((edge) => edge.node.id === id)
+  );
 
   return (
     <Layout>
-      <SEO
-        title={`All Thoughts | Page ${pageNumber}`}
-        slug={path}
-      />
+      <SEO title={`All Thoughts | Page ${pageNumber}`} slug={path} />
       <PaddingWrapper>
         {thoughts.map(({ node }) => (
           <NoDecorationLink
@@ -83,8 +78,10 @@ export default function Thoughts({ pageContext: { pagination } }) {
             aria-label={`view the "${node.fields.title}" article`}
             to={node.fields.slug}
           >
-            <Card >
-              <StyledImage fluid={node.fields.bannerImage.childImageSharp.fluid} />
+            <Card>
+              <StyledImage
+                fluid={node.fields.bannerImage.childImageSharp.fluid}
+              />
               <Title>{node.fields.title}</Title>
               <p>{node.excerpt}</p>
             </Card>
@@ -99,10 +96,10 @@ export default function Thoughts({ pageContext: { pagination } }) {
 const ALL_THOUGHTS_QUERY = graphql`
   query {
     allThoughts: allMdx(
-      sort: {fields: [frontmatter___date], order: DESC}
+      sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: {published: {ne: false}}
-        fileAbsolutePath: {regex: "//content/thoughts//"}
+        frontmatter: { published: { ne: false } }
+        fileAbsolutePath: { regex: "//content/thoughts//" }
       }
     ) {
       edges {
@@ -114,7 +111,11 @@ const ALL_THOUGHTS_QUERY = graphql`
             slug
             bannerImage {
               childImageSharp {
-                fluid(maxWidth: 640, traceSVG: { color: "#EEEEEE" }, quality: 75) {
+                fluid(
+                  maxWidth: 640
+                  traceSVG: { color: "#EEEEEE" }
+                  quality: 75
+                ) {
                   ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }

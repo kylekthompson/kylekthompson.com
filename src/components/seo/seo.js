@@ -20,7 +20,9 @@ export default function SEO({
   const seoUrl = slug
     ? `${siteMetadata.url}/${slug.replace(/^\/{1}/, '')}`
     : siteMetadata.url;
-  const seoImage = image ? `${siteMetadata.url}${image}` : `${siteMetadata.url}${defaultImage}`;
+  const seoImage = image
+    ? `${siteMetadata.url}${image}`
+    : `${siteMetadata.url}${defaultImage}`;
 
   const seoMeta = [
     {

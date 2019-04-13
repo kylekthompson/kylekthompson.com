@@ -60,11 +60,11 @@ function createHistory({ createPage, thoughts }) {
     paginated[page].push(thought.node.id);
 
     return paginated;
-  }, [])
+  }, []);
 
   pages.forEach((page, index) => {
     const previousPagePath = `/thoughts/${index + 1}`;
-    const nextPagePath = index === 1 ? '/thoughts' : `/thoughts/${index - 1}`
+    const nextPagePath = index === 1 ? '/thoughts' : `/thoughts/${index - 1}`;
     const pagePath = index > 0 ? `/thoughts/${index}` : '/thoughts';
 
     createPage({
@@ -80,8 +80,8 @@ function createHistory({ createPage, thoughts }) {
           path: pagePath,
         },
       },
-    })
-  })
+    });
+  });
 }
 
 async function getThoughts(graphql) {
