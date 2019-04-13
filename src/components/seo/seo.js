@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultImage from '../../assets/images/icon.png';
+import defaultImage from '../../assets/images/default-meta-image.png';
 import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 
@@ -20,7 +20,7 @@ export default function SEO({
   const seoUrl = slug
     ? `${siteMetadata.url}/${slug.replace(/^\/{1}/, '')}`
     : siteMetadata.url;
-  const seoImage = image ? `${siteMetadata.url}${image}` : `${defaultImage}`;
+  const seoImage = image ? `${siteMetadata.url}${image}` : `${siteMetadata.url}${defaultImage}`;
 
   const seoMeta = [
     {
