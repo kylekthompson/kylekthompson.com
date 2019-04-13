@@ -81,7 +81,7 @@ const INDEX_QUERY = graphql`
       }
     }
     recent: allMdx(
-      limit: 5
+      limit: 2
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         frontmatter: { published: { ne: false } }
