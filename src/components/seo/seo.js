@@ -63,16 +63,17 @@ export default function SEO({
     },
     {
       property: 'og:url',
-      content: seoUrl,
+      content: seoUrl.endsWith('/') ? seoUrl : `${seoUrl}/`,
+    },
+    {
+      property: 'og:type',
+      content: isArticle ? 'article' : 'website',
+    },
+    {
+      property: 'fb:app_id',
+      content: siteMetadata.facebook.appId,
     },
   ];
-
-  if (isArticle) {
-    seoMeta.push({
-      property: 'og:type',
-      content: 'article',
-    });
-  }
 
   return <Helmet title={title} meta={[...seoMeta, ...meta]} />;
 }
@@ -86,6 +87,9 @@ const METADATA_QUERY = graphql`
         url
         author {
           twitter
+        }
+        facebook {
+          appId
         }
       }
     }

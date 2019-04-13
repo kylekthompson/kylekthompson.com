@@ -7,6 +7,9 @@ module.exports = {
     author: {
       twitter: '@kylekthomp',
     },
+    facebook: {
+      appId: '317388982278417',
+    },
   },
   plugins: [
     {
