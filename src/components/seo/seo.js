@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export default function SEO({
-  title,
+  title = null,
   description = null,
   image = null,
   isArticle = false,

@@ -2,6 +2,7 @@ import Image from 'gatsby-image';
 import Layout from '../components/layout';
 import React from 'react';
 import RecentThought from '../components/recent-thought';
+import SEO from '../components/seo';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 
@@ -37,6 +38,7 @@ export default function Index() {
 
   return (
     <Layout>
+      <SEO />
       <Container>
         <Greeting>Hello!</Greeting>
         <StyledImage
