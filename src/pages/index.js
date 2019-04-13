@@ -73,7 +73,7 @@ const INDEX_QUERY = graphql`
         fixed(
           width: 250
           height: 250
-          traceSVG: { color: "#EEEEEE" }
+          traceSVG: { color: "#3E7CB1" }
           quality: 75
         ) {
           ...GatsbyImageSharpFixed_withWebp_tracedSVG

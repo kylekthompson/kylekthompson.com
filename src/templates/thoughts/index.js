@@ -113,7 +113,7 @@ const ALL_THOUGHTS_QUERY = graphql`
               childImageSharp {
                 fluid(
                   maxWidth: 640
-                  traceSVG: { color: "#EEEEEE" }
+                  traceSVG: { color: "#3E7CB1" }
                   quality: 75
                 ) {
                   ...GatsbyImageSharpFluid_withWebp_tracedSVG

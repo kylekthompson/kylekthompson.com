@@ -72,7 +72,7 @@ export const pageQuery = graphql`
         bannerCredit
         bannerImage {
           childImageSharp {
-            fluid(maxWidth: 720, traceSVG: { color: "#EEEEEE" }, quality: 75) {
+            fluid(maxWidth: 720, traceSVG: { color: "#3E7CB1" }, quality: 75) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
