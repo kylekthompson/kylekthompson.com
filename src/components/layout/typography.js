@@ -58,6 +58,11 @@ export default css`
     font-style: italic;
   }
 
+  strong {
+    ${normalText}
+    font-weight: 600;
+  }
+
   code {
     ${normalText}
     background-color: ${({ theme }) => theme.colors.greys.darker};
