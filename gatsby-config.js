@@ -1,9 +1,9 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
-    title: 'yield(thoughts)',
-    description: "Kyle Thompson's personal blog",
-    url: 'https://yieldthoughts.com',
+    title: 'Kyle Thompson',
+    description: "Kyle Thompson's personal website",
+    url: 'https://kylekthompson.com',
     author: {
       twitter: '@kylekthomp',
     },
@@ -62,9 +62,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'yield(thoughts)',
-        short_name: 'yield(thoughts)',
-        description: "Kyle Thompson's personal blog",
+        name: 'Kyle Thompson',
+        short_name: 'Kyle Thompson',
+        description: "Kyle Thompson's personal website",
         start_url: '/',
         background_color: '#EEEEEE',
         theme_color: '#054A91',

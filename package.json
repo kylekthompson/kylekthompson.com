@@ -1,9 +1,9 @@
 {
-  "name": "yieldthoughts.com",
+  "name": "kylekthompson.com",
   "version": "1.0.0",
-  "description": "Kyle Thompson's personal blog",
+  "description": "Kyle Thompson's personal website",
   "main": "index.js",
-  "repository": "https://github.com/kylekthompson/yieldthoughts.com",
+  "repository": "https://github.com/kylekthompson/kylekthompson.com",
   "author": "Kyle Thompson <kyle@kylekthompson.com>",
   "license": "MIT",
   "private": true,
