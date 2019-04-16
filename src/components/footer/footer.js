@@ -14,7 +14,7 @@ const Container = styled.div`
 function Source() {
   return (
     <a
-      href="https://github.com/kylekthompson/yieldthoughts.com"
+      href="https://github.com/kylekthompson/kylekthompson.com"
       target="_blank"
       rel="noopener noreferrer"
     >
