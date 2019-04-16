@@ -2,6 +2,7 @@ import { Code, H2, H3, H4, H5, H6, P, UL, OL } from '../blog-post';
 import React from 'react';
 
 const HIGHLIGHTS = /{(?<highlights>[\d,-]+)}/;
+const LANGUAGE = /language-(?<language>.*)/;
 
 function highlightsFromMetastring(metastring) {
   if (!metastring) {
@@ -28,18 +29,22 @@ function codePropsFromPreProps(preProps) {
   if (
     preProps.children &&
     preProps.children.props &&
-    preProps.children.props.name === 'code'
+    preProps.children.props.mdxType === 'code'
   ) {
     const {
       children: code,
-      props: { className, metastring, ...rest },
+      className,
+      metastring,
+      ...rest
     } = preProps.children.props;
 
     const highlights = highlightsFromMetastring(metastring);
+    const matches = className.match(LANGUAGE);
+    const language = matches && matches.groups && matches.groups.language ? matches.groups.language : '';
 
     return {
       code: code.trim(),
-      language: className && className.split('-')[1],
+      language,
       highlights,
       ...rest,
     };
