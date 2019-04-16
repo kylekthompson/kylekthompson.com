@@ -6,7 +6,7 @@ import reset from 'styled-reset';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import typography from './typography';
 import { Helmet } from 'react-helmet';
-import { MDXProvider } from '@mdx-js/tag';
+import { MDXProvider } from '@mdx-js/react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 const theme = {
