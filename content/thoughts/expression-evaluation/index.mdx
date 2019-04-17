@@ -1,0 +1,112 @@
+---
+title: Expression Evaluation
+description: A practical example to showcase the power of objects
+date: 2019-04-17
+author: Kyle Thompson
+bannerImage: ./images/banner.jpg
+bannerCredit: _Photo by [Roman Mager](https://unsplash.com/photos/5mZ_M06Fc9g)_
+bannerAlt: Formulas on an old chalkboard
+categories:
+  - programming
+  - ruby
+  - objects
+keywords:
+  - programming
+  - ruby
+  - objects
+published: true
+---
+
+The more I work with objects, the more I'm convinced that they're the answer to writing maintainable, composable, and
+reusable software. In this post, we'll walk through how we might represent mathematical expressions as objects and
+partially (or fully) evaluate them as a practical example showcasing the power that objects give you.
+
+In more concrete terms, by the end of this post we'll be able to do the following:
+
+```ruby
+RSpec.describe Expression do
+  subject(:expression) do
+    described_class.new(
+      operation: Operation::Multiplication.new,
+      left: a_plus_b,
+      right: x_plus_y
+    )
+  end
+
+  let(:a_plus_b) do
+    described_class.new(
+      operation: Operation::Addition.new,
+      left: Variable.new(:a),
+      right: Variable.new(:b)
+    )
+  end
+  let(:x_plus_y) do
+    described_class.new(
+      operation: Operation::Addition.new,
+      left: Variable.new(:x),
+      right: Variable.new(:y)
+    )
+  end
+
+  describe ".to_s" do
+    it { is_expected.to eq("((a + b) * (x + y))") }
+  end
+
+  describe ".evaluate" do
+    let(:assignments) do
+      {
+        a: a,
+        b: b,
+        x: x,
+        y: y
+      }
+    end
+
+    context "when fully evaluated" do
+      let(:a) { 6 }
+      let(:b) { 16 }
+      let(:x) { 5 }
+      let(:y) { 15 }
+
+      it "can be executed" do
+        expect(expression.evaluate(assignments).execute).to eq(440)
+      end
+
+      it "prints" do
+        expect(expression.evaluate(assignments).to_s).to eq("((6 + 16) * (5 + 15))")
+      end
+
+      it "does not change the execution with further evaluation" do
+        fully_evaluated = expression.evaluate(assignments)
+        second_evaluation = fully_evaluated.evaluate(y: 15)
+        expect(fully_evaluated).not_to eq(second_evaluation)
+        expect(fully_evaluated.execute).to eq(second_evaluation.execute)
+      end
+    end
+
+    context "when partially evaluated" do
+      let(:a) { 6 }
+      let(:b) { nil }
+      let(:x) { 5 }
+      let(:y) { 15 }
+
+      it "cannot be executed" do
+        expect do
+          expression.evaluate(assignments).execute
+        end.to raise_error(Errors::CannotExecutePartialEvaluation)
+      end
+
+      it "prints" do
+        expect(expression.evaluate(assignments).to_s).to eq("((6 + b) * (5 + 15))")
+      end
+
+      it "can be further evaluated, then executed" do
+        partially_evaluated = expression.evaluate(assignments)
+        fully_evaluated = partially_evaluated.evaluate(b: 16)
+
+        expect(fully_evaluated.execute).to eq(440)
+      end
+    end
+  end
+end
+```
