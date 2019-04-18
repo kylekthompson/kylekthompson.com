@@ -1,4 +1,4 @@
-import { Code, H2, H3, H4, H5, H6, P, UL, OL } from '../blog-post';
+import { Code, Heading, P, UL, OL } from '../blog-post';
 import React from 'react';
 
 const HIGHLIGHTS = /{(?<highlights>[\d,-]+)}/;
@@ -54,11 +54,11 @@ function codePropsFromPreProps(preProps) {
 }
 
 export default {
-  h1: (props) => <H2 {...props} />,
-  h2: (props) => <H3 {...props} />,
-  h3: (props) => <H4 {...props} />,
-  h4: (props) => <H5 {...props} />,
-  h5: (props) => <H6 {...props} />,
+  h1: (props) => <Heading as="h2" {...props} />,
+  h2: (props) => <Heading as="h3" {...props} />,
+  h3: (props) => <Heading as="h4" {...props} />,
+  h4: (props) => <Heading as="h5" {...props} />,
+  h5: (props) => <Heading as="h6" {...props} />,
   h6: () => {
     throw new Error('Cannot nest heading that deep.');
   },
