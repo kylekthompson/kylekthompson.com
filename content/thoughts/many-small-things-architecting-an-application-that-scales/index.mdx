@@ -147,7 +147,7 @@ team, we're responsible for building out new products or varying our existing on
 we can scale that while growing out both horizontally and vertically.
 
 Insurance is an _extremely_ complex domain to work in so while "building out new products and varying existing ones"
-might sound straight-forward, there are a ton of product and state specific domain requirements that we need to build
+might sound straight-forward, there are a ton of product and state-specific domain requirements that we need to build
 out and maintain while we expand to every state. Given that background, it kinda makes sense to have a bit of overlap
 between those teams since there will naturally be architectural concerns while trying to build out entire new offerings
 or new flavors of existing ones.
@@ -381,7 +381,7 @@ concerns and we've broken down the tall dependency graph into something shorter.
 
 - We've set ourselves up to _generate rates and quotes in different ways_
 - To create a policy, all we need is a quote with some premiums (so testing setup is a lot easier)
-- Policy creation isn't dependent at all on how a rate is created, so bottom-of-the-stack changes won't ripple up
+- Policy creation isn't dependent at all on how a rate is created so bottom-of-the-stack changes won't ripple up
 
 ### Modeling product variants
 
@@ -514,7 +514,7 @@ variant.
 
 ## Building and composing a new small thing
 
-Now that we've done the up front work to break down our really-big-thing into many-small-things, let's make good use of
+Now that we've done the upfront work to break down our really-big-thing into many-small-things, let's make good use of
 that by adding support for our drive-later product variant. Previously, we defined a single
 `DriveFirstRatingDataService` to keep the functionality on-par with the old `RateService`, but let's go ahead and extend
 that to drive-later now:
@@ -555,6 +555,6 @@ So, we've gone from a very tall stack of code ready to fall over with any change
 out or compose other small pieces. We can build drive-first, drive-later, and any other variant of auto insurance that
 we want to without breaking an existing variant.
 
-Hopefully you're able to see some of the benefits of composing a lot of small pieces over a single tall stack of code.
+Hopefully, you're able to see some of the benefits of composing a lot of small pieces over a single tall stack of code.
 At Root, I think this approach is going to let us iterate quickly, write fast, meaningful tests, and provide a ton of
 business value without keeping us awake at night.
