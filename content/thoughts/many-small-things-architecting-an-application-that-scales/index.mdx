@@ -1,8 +1,8 @@
 ---
-title: Many Small Things
+title: "Many Small Things: Architecting an Application That Scales"
 description: >-
-  A comparison of big things and small things where we think about dependencies, code composition, and how we can
-  re-think our code to be reusable.
+  A look at why tightly coupled applications with tall dependency graphs can't scale and how we can architect
+  them in a way that avoids these pitfalls.
 date: 2019-04-16
 author: Kyle Thompson
 bannerImage: ./images/banner.jpg
@@ -26,39 +26,10 @@ import Link from '../../shared/components/external-link';
 
 Recently at work, I've had a lot of time to think about how we architect and design our server in a way that will scale
 for our current needs and future ventures. While doing that, I feel like I keep coming back to a few small, guiding
-ideas that I'm planning on writing about. To start out the mini-series, let's talk about big things and small things.
+thoughts that I'm planning on writing about.
 
-Before getting right into it, though, I thought it might be good to give a bit of an overview on why I'm thinking about
-it at all.
-
-# Why is this important to me?
-
-At <Link href="https://root.engineering/">Root</Link>, I'm currently an engineer on two teams: Application
-Infrastructure (not quite what it sounds like) and New Products/Product Variants.
-
-At first read, that doesn't sound entirely related, but it might make more sense after hearing a bit about what we do on
-those teams.
-
-On the Application Infrastructure team, we're responsible for the overall architectural direction of our backend and
-client codebases as well as developer productivity and the tools around that. On the New Products/ Product Variants
-team, we're responsible for building out new products or varying our existing ones (aptly named, right?) and making sure
-we can scale that while growing out both horizontally and vertically.
-
-Insurance is an _extremely_ complex domain to work in so while "building out new products and varying existing ones"
-might sound straight-forward, there are a ton of product and state specific domain requirements that we need to build
-out and maintain while we expand to every state. Given that background, it kinda makes sense to have a bit of overlap
-between those teams since there will naturally be architectural concerns while trying to build out entire new offerings
-or new flavors of existing ones.
-
-Like any other complex system, we need to be pretty careful about how we write our code to make sure new engineers can
-efficiently onboard and make meaningful contributions without understanding the entire application. Additionally, we
-need to make sure that we aren't constraining ourselves so that our longer-tenured employees feel like they're able to
-properly build their features.
-
-# The problem
-
-In insurance, we have a lot of moving pieces. At a high level, going from zero to policyholder looks something like
-this:
+In some applications, you'll find that to build new features or add new functionality you build on top of other things.
+In our application, one such stack of functionality is the process to buy a policy. At a high level, it looks like this:
 
 1. Collect account information (email/password)
 1. Collect profile information (address, license numbers, VINs, etc.)
@@ -157,14 +128,44 @@ of my head, here are a few:
 1. Pieces at the top of the stack know about _everything_
 1. New functionality can (for the most part) only scale vertically by adding to the top of the stack
 
-For the purposes of this post, we'll look mostly at points 1, 3, and 4. Testing will end up being an afterthought of
-sorts, but it should naturally become easier with the solution we land on.
+For the purposes of this post, we're mostly going to look at points 1, 3, and 4. Testing will end up being an
+afterthought of sorts, but it should naturally become easier with the solution we land on.
 
-At Root, we currently have two variants of car insurance. We'll call them "drive-first" and "drive-later." They are
-more-or-less what they sound like. In drive-first, you'll download our app, sign up, take a test drive, get a quote once
-that is done, and finally purchase a policy. In drive-later, the test drive step is _after_ you purchase the policy-
-you'll start out with a policy and take a thirty-day test drive while already a policyholder. After that, you'll get a
-final price based on your driving.
+Before I get started, though, I think it will help you out to understand why I'm thinking about these problems.
+
+# Why is this important to me?
+
+At <Link href="https://root.engineering/">Root</Link>, I'm currently an engineer on two teams: Application
+Infrastructure (not quite what it sounds like) and New Products/Product Variants.
+
+At first read, those teams don't sound entirely related, but it might make more sense after hearing a bit about what
+we do on those teams.
+
+On the Application Infrastructure team, we're responsible for the overall architectural direction of our backend and
+client codebases as well as developer productivity and the tools around that. On the New Products/ Product Variants
+team, we're responsible for building out new products or varying our existing ones (aptly named, right?) and making sure
+we can scale that while growing out both horizontally and vertically.
+
+Insurance is an _extremely_ complex domain to work in so while "building out new products and varying existing ones"
+might sound straight-forward, there are a ton of product and state specific domain requirements that we need to build
+out and maintain while we expand to every state. Given that background, it kinda makes sense to have a bit of overlap
+between those teams since there will naturally be architectural concerns while trying to build out entire new offerings
+or new flavors of existing ones.
+
+Like any other complex system, we need to be pretty careful about how we write our code to make sure new engineers can
+efficiently onboard and make meaningful contributions without understanding the entire application. Additionally, we
+need to make sure that we aren't constraining ourselves so that our longer-tenured employees feel like they're able to
+properly build their features.
+
+Anyway- let's move on and find out how to scale our application.
+
+# When tightly coupled pieces become a problem
+
+At Root, we currently have two variants of car insurance. Let's call them "drive-first" and "drive-later." They are
+more-or-less what they sound like. In drive-first, you'll download our app, sign up, take a test drive, get a quote
+based on your test drive, and finally purchase a policy. In drive-later, the test drive step is _after_ you purchase
+the policy- you'll start out with a policy and take a thirty-day test drive while already a policyholder. After that,
+you'll get a final price based on your driving.
 
 The example modeling that I laid out above can handle drive-first perfectly fine with a little extra code:
 
@@ -219,16 +220,20 @@ Let's think a little about the differences between drive-first and drive-later, 
 
 The last two differences are both additive, and the first is a change. As mentioned earlier, a tall dependency stack
 makes it difficult and potentially risky to make a change to a part of the stack. Because of that (and that additions
-are generally easier to implement), we'll focus the rest of this post on the first difference.
+are generally easier to implement), we're going to focus the rest of this post on the first difference.
 
-# How do we avoid the risk?
+As written, we're going to have a really hard time supporting drive-later. We don't want to break drive-first, but
+since all of the pieces are so tightly coupled, we're going to end up sweating through the night waiting for our
+pagers to go off. Instead of dealing with that, let's write our code in a different way.
+
+# How do we avoid the risks of tight coupling?
 
 In an ideal system, we should be able to easily support change whether it's changing existing functionality or adding
 new functionality (you can still think of this as a change to the system overall). To do that without fear of everything
 toppling over, we can re-think the structure of our code. Rather than building a big and tall stack of code, we should
 try to build a lot of small pieces that we can compose together in a short stack.
 
-## Small things
+## Small chunks of code with one purpose
 
 Consider the previous process of purchasing a policy. I initially described it as a single process- from being some
 anonymous person all the way to being a policyholder. Is that actually the case, though?
@@ -243,14 +248,14 @@ how to run external reports and persist them. And so on for the other pieces.
 On their own, though, these smaller pieces are all pretty meaningless from a business perspective. You could almost go
 as far as thinking of them as third-party services or libraries if you wanted to.
 
-## Composition and orchestration
+## Composing code into something meaningful
 
-By itself, the "many small things" idea doesn't _quite_ work, since there isn't a great way to define a whole business
+By itself, the "many small things" idea doesn't _quite_ work since there isn't a great way to define a whole business
 process as many small things (it's a little contradictory if you think about it).
 
-At some point, we'll need to take these small things, put some business logic around them, and define a more
-medium-sized thing that provides some business value. You could imagine having multiple thin orchestration layers on top
-of those small pieces.
+At some point, we need to take these small things, put some business logic around them, and define a more medium-sized
+thing that provides some business value. You could imagine having multiple thin orchestration layers on top of those
+small pieces.
 
 In the earlier become-a-policyholder process, all of the logic was in one place and joined together. In a world of many
 small things with thin orchestration layers on top, we might have a few distinct layers that all live independently of
@@ -261,16 +266,16 @@ on everything. This distinction saves us from a number of the pitfalls I mention
 
 Because we've already broken up a lot of our functionality into smaller pieces, these medium-sized business processes
 that better define the stages of the business can now compose those smaller pieces into something that provides value.
-And even better, if we want a new product variant it's as simple as composing those pieces in a different way.
+And even better, if we want a new product variant, it's as simple as composing those pieces in a different way.
 
-# What does this look like in practice?
+# Making our application scalable
 
 Let's go back to the drive-first and drive-later product variants that we need to support and think through
-re-designing the models and services that we have so far to open them up to change. We'll walk through making
+re-designing the models and services that we have so far to open them up to change. We're going to walk through making
 adjustments to the models and service layer to support purchasing a policy without taking a test drive in a
 many-small-things way.
 
-## A quick re-model
+## Building many small, loosely-coupled models
 
 Let's step back and look at our existing modeling of this process to refresh our memory:
 
@@ -307,9 +312,9 @@ class Profile < ApplicationRecord
 end
 ```
 
-### Removing dependencies
+### Breaking dependencies between tightly-coupled models
 
-To break up this tall stack, we'll start by breaking some dependencies (I'll comment them out for clarity):
+To break up this tall stack, we'll start by breaking some dependencies (I've commented them out for clarity):
 
 ```ruby {6,11,13-16}
 class Policy < ApplicationRecord
@@ -393,11 +398,13 @@ This model is pretty small, but also pretty powerful. By pushing this low in the
 we talked about earlier can say "Hey, what kind of variant am I working with here? We'll want to create rating data for
 that one." without depending on _everything_ in the system.
 
-## Re-thinking our services
+## Building many small, loosely-coupled services
 
-So we talked about the three main differences between drive-first and drive-later. The first one was about when the test
-drive happened. For the most part, we're ready to support the change to when that happens. Recall our `RateService` from
-earlier:
+On a similar note as the models, we also need a many-small-things approach with our services.
+
+Earlier, we talked about the three main differences between drive-first and drive-later. The first one was about when
+the test drive happened. For the most part, we're ready to support the change to when that happens. Recall our
+`RateService` from earlier:
 
 ```ruby
 module RateService
@@ -505,10 +512,10 @@ the "steps" to create a rate end up well-defined, so when we want to test out a 
 straightforward to do what we need- define a new rating data service that can build rating data for that specific
 variant.
 
-## Supporting drive-later
+## Building and composing a new small thing
 
-Now that we've done the up front work to break down our really-big-thing into many-small-things, let's put that to work
-by adding support for our drive-later product variant. Previously, we had definded a single
+Now that we've done the up front work to break down our really-big-thing into many-small-things, let's make good use of
+that by adding support for our drive-later product variant. Previously, we defined a single
 `DriveFirstRatingDataService` to keep the functionality on-par with the old `RateService`, but let's go ahead and extend
 that to drive-later now:
 
@@ -523,7 +530,7 @@ module DriveLaterRatingDataService
 end
 ```
 
-You'll note here that we now have two rating data services to go along with our two product variants. The `RateService`
+You can see here that we now have two rating data services to go along with our two product variants. The `RateService`
 is still in charge of creating rates, but we've opened it up for extension by providing a way to build rating data in
 whatever way a product variant requires.
 
@@ -541,3 +548,13 @@ module PuppyBarkRatingDataService
   end
 end
 ```
+
+# Wrapping up
+
+So, we've gone from a very tall stack of code ready to fall over with any change into something that allows us to swap
+out or compose other small pieces. We can build drive-first, drive-later, and any other variant of auto insurance that
+we want to without breaking an existing variant.
+
+Hopefully you're able to see some of the benefits of composing a lot of small pieces over a single tall stack of code.
+At Root, I think this approach is going to let us iterate quickly, write fast, meaningful tests, and provide a ton of
+business value without keeping us awake at night.
