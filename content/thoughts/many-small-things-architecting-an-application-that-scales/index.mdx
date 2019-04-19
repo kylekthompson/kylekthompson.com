@@ -2,8 +2,8 @@
 title: "Many Small Things: Architecting an Application That Scales"
 description: >-
   A look at why tightly coupled applications with tall dependency graphs can't scale and how we can architect
-  them in a way that avoids these pitfalls.
-date: 2019-04-16
+  them in a way that avoids their pitfalls.
+date: 2019-04-18
 author: Kyle Thompson
 bannerImage: ./images/banner.jpg
 bannerCredit: _Photo by [Hans-Peter Gauster](https://unsplash.com/photos/3y1zF4hIPCg)_
@@ -25,23 +25,23 @@ published: true
 import Link from '../../shared/components/external-link';
 
 Recently at work, I've had a lot of time to think about how we architect and design our server in a way that will scale
-for our current needs and future ventures. While doing that, I feel like I keep coming back to a few small, guiding
-thoughts that I'm planning on writing about.
+for our current needs and future ventures. While doing that, I feel like I keep coming back to a few guiding thoughts
+that I'm planning on writing about.
 
-In some applications, you'll find that to build new features or add new functionality you build on top of other things.
-In our application, one such stack of functionality is the process to buy a policy. At a high level, it looks like this:
+In some applications, you'll find that to build new features or add functionality you build on top of other things. In
+our application, one such stack of functionality is the process of buying a policy. At a high level, it looks like this:
 
 1. Collect account information (email/password)
 1. Collect profile information (address, license numbers, VINs, etc.)
 1. Use that information to fetch reports from external services
 1. Record the test drive
 1. Use the profile information, reports, and driving data to figure out what to charge
-1. Decide on a set of coverages to get a quote
-1. Purchase the policy
+1. Collect the customer's coverage preferences
+1. Collect payment and finalize the policy
 
-There's a lot of insurance-specific stuff in there, but you can probably see a few pieces at least: accounts, profiles,
-reports, test drive, rating, quotes, and policies. Even ignoring the rest of our domain, you can see how things might
-get unwieldy pretty fast.
+There's a lot of insurance-specific stuff in there, but you can probably see a few pieces- accounts, profiles, reports,
+test drive, rating, quotes, and policies. Even ignoring the rest of our domain, you can see how things might get
+unwieldy pretty quickly.
 
 An initial attempt at modeling this might look something like this:
 
@@ -79,7 +79,7 @@ end
 ```
 
 In this example, you can see below that each step in the process knows about the step before. Since it has that
-knowledge and a hard dependency on it, we end up with a really tall dependency graph.
+knowledge and a hard dependency on it, we end up with a tall dependency graph.
 
 ```ruby {2,6,11,20,24,28}
 class Policy < ApplicationRecord
@@ -114,24 +114,25 @@ class Profile < ApplicationRecord
 end
 ```
 
-While we do have some small things at the bottom of the stack (like the profile and account), we also have a
-really-big-thing at the very top of the stack.
+While we do have some small things at the bottom of the stack (like the profile and account), we also have a "really big
+thing" at the very top of the stack.
 
 # Why can't this scale?
 
 In a lot of cases, this might not be a big deal (and we definitely should avoid overcomplicating the code if that is the
-case). That being said, in a sufficiently complex domain like ours, you'll probably run into some problems. Off the top
-of my head, here are a few:
+case). That being said, in a sufficiently complex domain like ours, we'll probably run into issues. While those issues
+might not be directly related to having a "really big thing", having it tends to drive our application into an
+undesirable state:
 
 1. When one unrelated thing at the bottom changes, everything above it can break
-1. Setting up tests becomes cumbersome and slow (to create a policy, you'll need everything below it)
 1. Pieces at the top of the stack know about _everything_
 1. New functionality can (for the most part) only scale vertically by adding to the top of the stack
+1. Setting up tests becomes cumbersome and slow (to create a policy, we need everything below it)
 
-For the purposes of this post, we're mostly going to look at points 1, 3, and 4. Testing will end up being an
+For the purposes of this post, we're mostly going to look at points 1, 2, and 3. Testing will end up being an
 afterthought of sorts, but it should naturally become easier with the solution we land on.
 
-Before I get started, though, I think it will help you out to understand why I'm thinking about these problems.
+Before I get started, though, I think it will help to understand why I'm thinking about these problems.
 
 # Why is this important to me?
 
@@ -219,8 +220,8 @@ Let's think a little about the differences between drive-first and drive-later, 
   with driving data
 
 The last two differences are both additive, and the first is a change. As mentioned earlier, a tall dependency stack
-makes it difficult and potentially risky to make a change to a part of the stack. Because of that (and that additions
-are generally easier to implement), we're going to focus the rest of this post on the first difference.
+makes it difficult and potentially risky to make a change to part of the stack. Because of that (and that additions are
+generally easier to implement), we're going to focus the rest of this post on the first difference.
 
 As written, we're going to have a really hard time supporting drive-later. We don't want to break drive-first, but
 since all of the pieces are so tightly coupled, we're going to end up sweating through the night waiting for our
@@ -228,10 +229,9 @@ pagers to go off. Instead of dealing with that, let's write our code in a differ
 
 # How do we avoid the risks of tight coupling?
 
-In an ideal system, we should be able to easily support change whether it's changing existing functionality or adding
-new functionality (you can still think of this as a change to the system overall). To do that without fear of everything
-toppling over, we can re-think the structure of our code. Rather than building a big and tall stack of code, we should
-try to build a lot of small pieces that we can compose together in a short stack.
+In an ideal system, we should be able to easily support changing existing functionality or adding new functionality. To
+do that without fear of everything toppling over, we can re-think the structure of our code. Rather than building a big
+and tall stack of code, we should try to build a lot of small pieces that we can compose together in a short stack.
 
 ## Small chunks of code with one purpose
 
@@ -239,7 +239,7 @@ Consider the previous process of purchasing a policy. I initially described it a
 anonymous person all the way to being a policyholder. Is that actually the case, though?
 
 Earlier, we broke out some core ideas from the become-a-policyholder process: profiles, reports, test drive, rates,
-quotes, and policies. When we initially talked about it, each thing built on top of each other.
+quotes, and policies. When we initially talked about it, each thing built on top of the last.
 
 But what if they didn't? What if they were distinct, separate small pieces of functionality? The profiles piece might
 know how to store the profile information and provide that to anything that might need it. The reports piece might know
@@ -273,7 +273,7 @@ And even better, if we want a new product variant, it's as simple as composing t
 Let's go back to the drive-first and drive-later product variants that we need to support and think through
 re-designing the models and services that we have so far to open them up to change. We're going to walk through making
 adjustments to the models and service layer to support purchasing a policy without taking a test drive in a
-many-small-things way.
+"many small things" way.
 
 ## Building many small, loosely-coupled models
 
@@ -400,7 +400,7 @@ that one." without depending on _everything_ in the system.
 
 ## Building many small, loosely-coupled services
 
-On a similar note as the models, we also need a many-small-things approach with our services.
+On a similar note as the models, we also need a "many small things" approach with our services.
 
 Earlier, we talked about the three main differences between drive-first and drive-later. The first one was about when
 the test drive happened. For the most part, we're ready to support the change to when that happens. Recall our
@@ -514,8 +514,8 @@ variant.
 
 ## Building and composing a new small thing
 
-Now that we've done the upfront work to break down our really-big-thing into many-small-things, let's make good use of
-that by adding support for our drive-later product variant. Previously, we defined a single
+Now that we've done the upfront work to break down our "really big thing" into "many small things", let's make good use
+of that by adding support for our drive-later product variant. Previously, we defined a single
 `DriveFirstRatingDataService` to keep the functionality on-par with the old `RateService`, but let's go ahead and extend
 that to drive-later now:
 
@@ -558,3 +558,6 @@ we want to without breaking an existing variant.
 Hopefully, you're able to see some of the benefits of composing a lot of small pieces over a single tall stack of code.
 At Root, I think this approach is going to let us iterate quickly, write fast, meaningful tests, and provide a ton of
 business value without keeping us awake at night.
+
+_I'd also like to give a shout out to Bob Carson, Emily Engle, and Tony Schneider for their suggestions and help in
+editing this post ✨_
