@@ -1,4 +1,5 @@
 import ActualCode from '../code';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 const BLOG_MARGIN = css`
@@ -27,21 +28,20 @@ export const H2 = styled.h2`
   ${BLOG_MARGIN}
 `;
 
-export const H3 = styled.h3`
-  ${BLOG_MARGIN}
+const HeadingLink = styled.a`
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-export const H4 = styled.h4`
-  ${BLOG_MARGIN}
-`;
+export function Heading({ children, ...rest }) {
+  const withoutSpecialCharacters = children.toLowerCase().replace(/[^\sa-z0-9-_]+/g, '');
+  const id = withoutSpecialCharacters.replace(/\s+/g, '-').replace(/-+/g, '-');
 
-export const H5 = styled.h5`
-  ${BLOG_MARGIN}
-`;
-
-export const H6 = styled.h6`
-  ${BLOG_MARGIN}
-`;
+  return (
+    <HeadingLink href={`#${id}`}>
+      <H2 id={id} {...rest}>{children}</H2>
+    </HeadingLink>
+  );
+}
 
 export const P = styled.p`
   ${BLOG_MARGIN}

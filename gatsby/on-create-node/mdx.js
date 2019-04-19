@@ -8,10 +8,10 @@ function buildSlug({ getNode, node }) {
       getNode,
       basePath: 'content/thoughts/',
     });
-    return `/thoughts${thoughtPath}`;
+    return `/thoughts${thoughtPath}`.replace(/\/$/, '');
   }
 
-  return createFilePath({ node, getNode });
+  return createFilePath({ node, getNode }).replace(/\/$/, '');
 }
 
 function onCreateMdxNode({ actions, getNode, node }) {

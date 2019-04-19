@@ -63,7 +63,7 @@ export default function SEO({
     },
     {
       property: 'og:url',
-      content: seoUrl.endsWith('/') ? seoUrl : `${seoUrl}/`,
+      content: seoUrl,
     },
     {
       property: 'og:type',
