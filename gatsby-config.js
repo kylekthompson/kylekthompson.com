@@ -27,7 +27,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
         defaultLayouts: {
           default: `${__dirname}/src/templates/markdown-page.js`,

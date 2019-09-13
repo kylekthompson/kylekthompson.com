@@ -44,6 +44,6 @@ end
 function publishThoughts(thoughts) {
   thoughts
     .filter(({ published, publishable }) => !published && publishable)
-    .forEach(publishThought)
+    .forEach(publishThought);
 }
 ```

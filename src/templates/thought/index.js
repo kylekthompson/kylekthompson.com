@@ -1,6 +1,6 @@
 import Image from 'gatsby-image';
 import Layout from '../../components/layout';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import Markdown from 'react-markdown';
 import React from 'react';
 import BannerCreditLink from './banner-credit-link';
@@ -56,7 +56,7 @@ export default function Thought({ data: { mdx } }) {
               {bannerCredit}
             </Markdown>
           </BannerCreditWrapper>
-          <MDXRenderer>{mdx.code.body}</MDXRenderer>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
         </PaddingWrapper>
       </article>
     </Layout>
@@ -82,9 +82,7 @@ export const pageQuery = graphql`
         slug
         title
       }
-      code {
-        body
-      }
+      body
     }
   }
 `;
