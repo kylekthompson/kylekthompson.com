@@ -19,9 +19,7 @@ const NavigationContainer = styled.div`
 export default function Header() {
   return (
     <Container>
-      <Link to="/">
-        kylekthompson.com
-      </Link>
+      <Link to="/">kylekthompson.com</Link>
       <NavigationContainer>
         <Link to="/thoughts">Thoughts</Link>
       </NavigationContainer>

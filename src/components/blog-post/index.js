@@ -33,12 +33,16 @@ const HeadingLink = styled.a`
 `;
 
 export function Heading({ children, ...rest }) {
-  const withoutSpecialCharacters = children.toLowerCase().replace(/[^\sa-z0-9-_]+/g, '');
+  const withoutSpecialCharacters = children
+    .toLowerCase()
+    .replace(/[^\sa-z0-9-_]+/g, '');
   const id = withoutSpecialCharacters.replace(/\s+/g, '-').replace(/-+/g, '-');
 
   return (
     <HeadingLink href={`#${id}`}>
-      <H2 id={id} {...rest}>{children}</H2>
+      <H2 id={id} {...rest}>
+        {children}
+      </H2>
     </HeadingLink>
   );
 }

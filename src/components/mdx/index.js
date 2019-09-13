@@ -40,7 +40,10 @@ function codePropsFromPreProps(preProps) {
 
     const highlights = highlightsFromMetastring(metastring);
     const matches = className.match(LANGUAGE);
-    const language = matches && matches.groups && matches.groups.language ? matches.groups.language : '';
+    const language =
+      matches && matches.groups && matches.groups.language
+        ? matches.groups.language
+        : '';
 
     return {
       code: code.trim(),
