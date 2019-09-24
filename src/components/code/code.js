@@ -6,11 +6,15 @@ import theme from 'prism-react-renderer/themes/nightOwl';
 const Pre = styled.pre`
   border-radius: 5px;
   font-family: monospace;
-  font-size: 16px;
+  font-size: 1.125rem;
   line-height: 1.6;
   overflow: auto;
   padding: 10px 0;
   width: 100%;
+
+  @media only screen and (max-device-width: 576px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Container = styled.div`
