@@ -75,6 +75,10 @@ Anyway, a slimmed down implementation of the `PubSub` class looks roughly like t
 class PubSub
   Event = Struct.new(:name, :attributes, :subscribers)
 
+  def self.default
+    @default ||= new
+  end
+
   def initialize
     @events = {}
   end
