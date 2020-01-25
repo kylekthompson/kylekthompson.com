@@ -1,4 +1,8 @@
 import Highlight, { defaultProps } from 'prism-react-renderer';
+import Prism from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-ruby';
+import 'prismjs/components/prism-javascript';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import theme from 'prism-react-renderer/themes/nightOwl';
@@ -80,7 +84,7 @@ export default function Code({
   highlights = [],
 }) {
   return (
-    <Highlight {...defaultProps} code={code} language={language} theme={theme}>
+    <Highlight {...defaultProps} code={code} language={language} theme={theme} Prism={Prism}>
       {({
         className: highlightClassName,
         style,
