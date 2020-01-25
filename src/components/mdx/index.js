@@ -1,7 +1,7 @@
 import { Code, Heading, P, UL, OL } from '../blog-post';
 import React from 'react';
 
-const HIGHLIGHTS = /{(?<highlights>[\d,-]+)}/;
+const HIGHLIGHTS = /\{(?<highlights>[\d,-]+)\}/;
 const LANGUAGE = /language-(?<language>.*)/;
 
 function highlightsFromMetastring(metastring) {
