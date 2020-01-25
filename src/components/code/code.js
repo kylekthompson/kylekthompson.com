@@ -84,7 +84,13 @@ export default function Code({
   highlights = [],
 }) {
   return (
-    <Highlight {...defaultProps} code={code} language={language} theme={theme} Prism={Prism}>
+    <Highlight
+      {...defaultProps}
+      code={code}
+      language={language}
+      theme={theme}
+      Prism={Prism}
+    >
       {({
         className: highlightClassName,
         style,
