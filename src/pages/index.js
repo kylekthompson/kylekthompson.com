@@ -1,7 +1,7 @@
 import Image from 'gatsby-image';
 import Layout from '../components/layout';
 import React from 'react';
-import RecentThought from '../components/recent-thought';
+import RecentPost from '../components/recent-post';
 import SEO from '../components/seo';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -28,7 +28,7 @@ const StyledImage = styled(Image)`
   margin-bottom: 30px;
 `;
 
-const RecentThoughtsHeader = styled.h2`
+const RecentPostsHeader = styled.h2`
   font-size: 1.65rem;
   margin: 30px 0;
 `;
@@ -57,9 +57,9 @@ export default function Index() {
           . This is a place for my thoughts on mostly programming-related
           topics. Everything I write here is my own opinion.
         </AboutMe>
-        <RecentThoughtsHeader>Recent Thoughts</RecentThoughtsHeader>
+        <RecentPostsHeader>Recent Posts</RecentPostsHeader>
         {recent.edges.map(({ node }) => (
-          <RecentThought key={node.fields.slug} thought={node} />
+          <RecentPost key={node.fields.slug} post={node} />
         ))}
       </Container>
     </Layout>
@@ -85,7 +85,7 @@ const INDEX_QUERY = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         frontmatter: { published: { ne: false } }
-        fileAbsolutePath: { regex: "//content/thoughts//" }
+        fileAbsolutePath: { regex: "//content/posts//" }
       }
     ) {
       edges {

@@ -1,8 +1,8 @@
-const { createThoughtPages } = require('./gatsby/create-pages/thoughts');
+const { createPostPages } = require('./gatsby/create-pages/posts');
 const { onCreateMdxNode } = require('./gatsby/on-create-node/mdx');
 
 async function createPages(args) {
-  await createThoughtPages(args);
+  await createPostPages(args);
 }
 
 function onCreateNode({ node, ...rest }) {

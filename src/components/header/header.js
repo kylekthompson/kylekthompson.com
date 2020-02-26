@@ -21,7 +21,7 @@ export default function Header() {
     <Container>
       <Link to="/">kylekthompson.com</Link>
       <NavigationContainer>
-        <Link to="/thoughts">Thoughts</Link>
+        <Link to="/blog">Blog</Link>
       </NavigationContainer>
     </Container>
   );

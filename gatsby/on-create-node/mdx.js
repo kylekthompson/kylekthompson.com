@@ -1,14 +1,14 @@
 const { createFilePath } = require('gatsby-source-filesystem');
 
 function buildSlug({ getNode, node }) {
-  if (node.fileAbsolutePath.includes('content/thoughts/')) {
+  if (node.fileAbsolutePath.includes('content/posts/')) {
     const parent = getNode(node.parent);
-    const thoughtPath = createFilePath({
+    const postPath = createFilePath({
       node: parent,
       getNode,
-      basePath: 'content/thoughts/',
+      basePath: 'content/posts/',
     });
-    return `/thoughts${thoughtPath}`.replace(/\/$/, '');
+    return `/blog${postPath}`.replace(/\/$/, '');
   }
 
   return createFilePath({ node, getNode }).replace(/\/$/, '');

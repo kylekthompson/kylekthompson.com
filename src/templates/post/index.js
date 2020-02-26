@@ -19,7 +19,7 @@ const PaddingWrapper = styled.div`
   width: calc(100vw - 40px);
 `;
 
-export default function Thought({ data: { mdx } }) {
+export default function Post({ data: { mdx } }) {
   const {
     author,
     bannerAlt,
