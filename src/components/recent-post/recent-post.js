@@ -25,15 +25,15 @@ const RecentExcerpt = styled.p`
   display: inline-block;
 `;
 
-export default function RecentThought({ thought }) {
+export default function RecentPost({ post }) {
   return (
     <Container>
-      <RecentLink to={thought.fields.slug}>
-        <RecentTitle>{thought.fields.title}</RecentTitle>
+      <RecentLink to={post.fields.slug}>
+        <RecentTitle>{post.fields.title}</RecentTitle>
       </RecentLink>
       <RecentExcerpt>
-        {thought.excerpt}{' '}
-        <ReadMoreLink to={thought.fields.slug}>read more</ReadMoreLink>
+        {post.excerpt}{' '}
+        <ReadMoreLink to={post.fields.slug}>read more</ReadMoreLink>
       </RecentExcerpt>
     </Container>
   );

@@ -61,18 +61,18 @@ function Navigation({ previous, next }) {
   );
 }
 
-export default function Thoughts({ pageContext: { pagination } }) {
-  const { allThoughts } = useStaticQuery(ALL_THOUGHTS_QUERY);
+export default function Blog({ pageContext: { pagination } }) {
+  const { allPosts } = useStaticQuery(ALL_POSTS_QUERY);
   const { path, page, pageNumber, nextPagePath, previousPagePath } = pagination;
-  const thoughts = page.map((id) =>
-    allThoughts.edges.find((edge) => edge.node.id === id)
+  const posts = page.map((id) =>
+    allPosts.edges.find((edge) => edge.node.id === id)
   );
 
   return (
     <Layout>
-      <SEO title={`All Thoughts | Page ${pageNumber}`} slug={path} />
+      <SEO title={`All Blog Posts | Page ${pageNumber}`} slug={path} />
       <PaddingWrapper>
-        {thoughts.map(({ node }) => (
+        {posts.map(({ node }) => (
           <NoDecorationLink
             key={node.fields.slug}
             aria-label={`view the "${node.fields.title}" article`}
@@ -93,13 +93,13 @@ export default function Thoughts({ pageContext: { pagination } }) {
   );
 }
 
-const ALL_THOUGHTS_QUERY = graphql`
+const ALL_POSTS_QUERY = graphql`
   query {
-    allThoughts: allMdx(
+    allPosts: allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         frontmatter: { published: { ne: false } }
-        fileAbsolutePath: { regex: "//content/thoughts//" }
+        fileAbsolutePath: { regex: "//content/posts//" }
       }
     ) {
       edges {
