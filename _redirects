@@ -1,32 +1,28 @@
-http://kylekthompson.netlify.com/* https://kylekthompson.com/:splat 301!
-https://kylekthompson.netlify.com/* https://kylekthompson.com/:splat 301!
+http://kylekthompson.netlify.com/* https://kylekthompson.com/:splat
+https://kylekthompson.netlify.com/* https://kylekthompson.com/:splat
 
-http://yield-thoughts.com/* https://kylekthompson.com/:splat 301!
-https://yield-thoughts.com/* https://kylekthompson.com/:splat 301!
-http://www.yield-thoughts.com/* https://kylekthompson.com/:splat 301!
-https://www.yield-thoughts.com/* https://kylekthompson.com/:splat 301!
+http://yield-thoughts.com/* https://kylekthompson.com/:splat
+https://yield-thoughts.com/* https://kylekthompson.com/:splat
+http://www.yield-thoughts.com/* https://kylekthompson.com/:splat
+https://www.yield-thoughts.com/* https://kylekthompson.com/:splat
 
-http://yieldthoughts.com/* https://kylekthompson.com/:splat 301!
-https://yieldthoughts.com/* https://kylekthompson.com/:splat 301!
-http://www.yieldthoughts.com/* https://kylekthompson.com/:splat 301!
-https://www.yieldthoughts.com/* https://kylekthompson.com/:splat 301!
+http://yieldthoughts.com/* https://kylekthompson.com/:splat
+https://yieldthoughts.com/* https://kylekthompson.com/:splat
+http://www.yieldthoughts.com/* https://kylekthompson.com/:splat
+https://www.yieldthoughts.com/* https://kylekthompson.com/:splat
 
-http://kylekthompson.dev/* https://kylekthompson.com/:splat 301!
-https://kylekthompson.dev/* https://kylekthompson.com/:splat 301!
-http://www.kylekthompson.dev/* https://kylekthompson.com/:splat 301!
-https://www.kylekthompson.dev/* https://kylekthompson.com/:splat 301!
+http://kylekthompson.dev/* https://kylekthompson.com/:splat
+https://kylekthompson.dev/* https://kylekthompson.com/:splat
+http://www.kylekthompson.dev/* https://kylekthompson.com/:splat
+https://www.kylekthompson.dev/* https://kylekthompson.com/:splat
 
-http://www.kylekthompson.com/* https://kylekthompson.com/:splat 301!
-https://www.kylekthompson.com/* https://kylekthompson.com/:splat 301!
+https://www.kylekthompson.com/thoughts https://kylekthompson.com/blog
+https://www.kylekthompson.com/thoughts/ https://kylekthompson.com/blog
+https://www.kylekthompson.com/thoughts/* https://kylekthompson.com/blog/:splat
 
-https://www.kylekthompson.com/thoughts https://kylekthompson.com/blog 301!
-https://www.kylekthompson.com/thoughts/ https://kylekthompson.com/blog 301!
+https://kylekthompson.com/thoughts https://kylekthompson.com/blog
+https://kylekthompson.com/thoughts/ https://kylekthompson.com/blog
+https://kylekthompson.com/thoughts/* https://kylekthompson.com/blog/:splat
 
-https://www.kylekthompson.com/thoughts/roots-migration-from-in-process-pub-sub-to-kafka https://kylekthompson.com/blog/roots-migration-from-in-process-pub-sub-to-kafka 301!
-https://www.kylekthompson.com/thoughts/roots-migration-from-in-process-pub-sub-to-kafka/ https://kylekthompson.com/blog/roots-migration-from-in-process-pub-sub-to-kafka 301!
-
-https://www.kylekthompson.com/thoughts/many-small-things-architecting-an-application-that-scales https://kylekthompson.com/blog/many-small-things-architecting-an-application-that-scales 301!
-https://www.kylekthompson.com/thoughts/many-small-things-architecting-an-application-that-scales/ https://kylekthompson.com/blog/many-small-things-architecting-an-application-that-scales 301!
-
-https://www.kylekthompson.com/thoughts/welcome-to-yield-thoughts https://kylekthompson.com/blog/welcome-to-yield-thoughts 301!
-https://www.kylekthompson.com/thoughts/welcome-to-yield-thoughts/ https://kylekthompson.com/blog/welcome-to-yield-thoughts 301!
+http://www.kylekthompson.com/* https://kylekthompson.com/:splat
+https://www.kylekthompson.com/* https://kylekthompson.com/:splat
