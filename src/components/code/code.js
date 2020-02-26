@@ -28,8 +28,8 @@ const Line = styled.div`
   ${({ highlighted, theme }) => {
     if (highlighted) {
       return css`
-        background-color: ${theme.colors.accentTransparent};
-        border-left: 5px solid ${theme.colors.accent};
+        background-color: ${theme.colors.sunsetOrangeTransparent};
+        border-left: 5px solid ${theme.colors.sunsetOrange};
       `;
     }
 

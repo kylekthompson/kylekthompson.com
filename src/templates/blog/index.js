@@ -28,7 +28,7 @@ const StyledImage = styled(Image)`
 `;
 
 const NoDecorationLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.offBlack};
 
   &:hover {
     text-decoration: none;

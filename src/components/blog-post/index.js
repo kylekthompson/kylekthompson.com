@@ -29,7 +29,7 @@ export const H2 = styled.h2`
 `;
 
 const HeadingLink = styled.a`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.offBlack};
 `;
 
 export function Heading({ children, ...rest }) {

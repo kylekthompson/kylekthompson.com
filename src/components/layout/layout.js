@@ -11,12 +11,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 const theme = {
   colors: {
-    primary: '#054A91',
-    secondary: '#3E7CB1',
-    background: '#EEEEEE',
-    accent: '#FF5E5B',
-    accentTransparent: '#FF5E5B36',
-    black: '#333333',
+    mediumElectricBlue: '#054A91',
+    steelBlue: '#3E7CB1',
+    isabelline: '#EEEEEE',
+    sunsetOrange: '#FF5E5B',
+    sunsetOrangeTransparent: '#FF5E5B36',
+    offBlack: '#333333',
+    offWhite: '#FDFDFD',
     greys: {
       lighter: '#F3F3F3',
       darker: '#C8C8C8',
@@ -27,9 +28,12 @@ const theme = {
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  html {
+    background-color: ${(props) => props.theme.colors.isabelline};
+  }
+
   body {
-    background-color: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.black};
+    color: ${(props) => props.theme.colors.offBlack};
     font-family: 'Open Sans', sans-serif;
     margin: 0;
   }

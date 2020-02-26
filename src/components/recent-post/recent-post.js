@@ -9,16 +9,16 @@ const Container = styled.div`
 
 const RecentTitle = styled.h3`
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.sunsetOrange};
   margin-bottom: 5px;
 `;
 
 const RecentLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.sunsetOrange};
 `;
 
 const ReadMoreLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.mediumElectricBlue};
 `;
 
 const RecentExcerpt = styled.p`
