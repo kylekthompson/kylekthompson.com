@@ -19,4 +19,14 @@ https://www.kylekthompson.dev/* https://kylekthompson.com/:splat 301!
 http://www.kylekthompson.com/* https://kylekthompson.com/:splat 301!
 https://www.kylekthompson.com/* https://kylekthompson.com/:splat 301!
 
-https://www.kylekthompson.com/thoughts/* https://kylekthompson.com/blog/:splat 301!
+https://www.kylekthompson.com/thoughts https://kylekthompson.com/blog 301!
+https://www.kylekthompson.com/thoughts/ https://kylekthompson.com/blog 301!
+
+https://www.kylekthompson.com/thoughts/roots-migration-from-in-process-pub-sub-to-kafka https://kylekthompson.com/blog/roots-migration-from-in-process-pub-sub-to-kafka 301!
+https://www.kylekthompson.com/thoughts/roots-migration-from-in-process-pub-sub-to-kafka/ https://kylekthompson.com/blog/roots-migration-from-in-process-pub-sub-to-kafka 301!
+
+https://www.kylekthompson.com/thoughts/many-small-things-architecting-an-application-that-scales https://kylekthompson.com/blog/many-small-things-architecting-an-application-that-scales 301!
+https://www.kylekthompson.com/thoughts/many-small-things-architecting-an-application-that-scales/ https://kylekthompson.com/blog/many-small-things-architecting-an-application-that-scales 301!
+
+https://www.kylekthompson.com/thoughts/welcome-to-yield-thoughts https://kylekthompson.com/blog/welcome-to-yield-thoughts 301!
+https://www.kylekthompson.com/thoughts/welcome-to-yield-thoughts/ https://kylekthompson.com/blog/welcome-to-yield-thoughts 301!
