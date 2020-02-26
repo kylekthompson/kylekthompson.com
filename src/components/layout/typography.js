@@ -45,7 +45,7 @@ export default css`
 
   a {
     ${normalText}
-    color: ${({ theme }) => theme.colors.mediumElectricBlue};
+    color: ${({ theme }) => theme.colors.steelBlue};
     cursor: pointer;
     text-decoration: none;
     &:hover {

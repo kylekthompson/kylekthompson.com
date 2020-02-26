@@ -50,7 +50,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 800px;
   min-height: 100vh;
 `;
 
@@ -69,7 +69,7 @@ export default function Layout({ children }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <>
         <GlobalStyle />
         <Helmet
           defaultTitle={siteMetadata.title}
@@ -91,16 +91,18 @@ export default function Layout({ children }) {
             rel="stylesheet"
           />
         </Helmet>
-        <ContentContainer>
-          <Header />
-          <MDXProvider components={mdxComponents}>
-            <main>{children}</main>
-          </MDXProvider>
-        </ContentContainer>
-        <FooterContainer>
-          <Footer />
-        </FooterContainer>
-      </Container>
+        <Header />
+        <Container>
+          <ContentContainer>
+            <MDXProvider components={mdxComponents}>
+              <main>{children}</main>
+            </MDXProvider>
+          </ContentContainer>
+          <FooterContainer>
+            <Footer />
+          </FooterContainer>
+        </Container>
+      </>
     </ThemeProvider>
   );
 }
