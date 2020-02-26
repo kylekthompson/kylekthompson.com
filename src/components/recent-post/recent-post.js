@@ -5,20 +5,16 @@ import { Link } from 'gatsby';
 const Container = styled.div`
   margin-bottom: 30px;
   max-width: 500px;
+  width: calc(100vw - 80px);
 `;
 
 const RecentTitle = styled.h3`
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.colors.sunsetOrange};
   margin-bottom: 5px;
 `;
 
 const RecentLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.sunsetOrange};
-`;
-
-const ReadMoreLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.mediumElectricBlue};
+  color: ${({ theme }) => theme.colors.steelBlue};
 `;
 
 const RecentExcerpt = styled.p`
@@ -33,7 +29,7 @@ export default function RecentPost({ post }) {
       </RecentLink>
       <RecentExcerpt>
         {post.excerpt}{' '}
-        <ReadMoreLink to={post.fields.slug}>read more</ReadMoreLink>
+        <Link to={post.fields.slug}>read more</Link>
       </RecentExcerpt>
     </Container>
   );

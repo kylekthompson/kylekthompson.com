@@ -50,11 +50,12 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  max-width: 800px;
   min-height: 100vh;
 `;
 
 const ContentContainer = styled.div`
+  align-items: center;
+  justifty-content: center;
   flex: 1 0 auto;
 `;
 
@@ -91,9 +92,9 @@ export default function Layout({ children }) {
             rel="stylesheet"
           />
         </Helmet>
-        <Header />
         <Container>
           <ContentContainer>
+            <Header />
             <MDXProvider components={mdxComponents}>
               <main>{children}</main>
             </MDXProvider>

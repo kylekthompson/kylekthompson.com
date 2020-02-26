@@ -7,7 +7,7 @@ const Container = styled.div`
   flex-direction: row;
   margin: 0 auto;
   max-width: 800px;
-  padding: 20px 0;
+  padding: 40px 0 20px;
   width: calc(100vw - 40px);
 `;
 
