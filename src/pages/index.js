@@ -74,12 +74,11 @@ const INDEX_QUERY = graphql`
     me: file(relativePath: { eq: "assets/images/me.png" }) {
       childImageSharp {
         fixed(
-          width: 250
-          height: 250
-          traceSVG: { color: "#3E7CB1" }
+          width: 250,
+          height: 250,
           quality: 75
         ) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          ...GatsbyImageSharpFixed_withWebp_noBase64
         }
       }
     }

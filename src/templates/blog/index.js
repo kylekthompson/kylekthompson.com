@@ -116,12 +116,8 @@ const ALL_POSTS_QUERY = graphql`
             slug
             bannerImage {
               childImageSharp {
-                fluid(
-                  maxWidth: 640
-                  traceSVG: { color: "#3E7CB1" }
-                  quality: 75
-                ) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                fluid(maxWidth: 760, quality: 75) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
