@@ -29,8 +29,8 @@ const Article = styled.article`
 
 const PaddingWrapper = styled.div`
   margin: 0 auto;
-  max-width: 720px;
-  width: calc(100vw - 40px);
+  max-width: 760px;
+  width: calc(100vw - 80px);
 `;
 
 const ImageContainer = styled.div`
