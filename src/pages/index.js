@@ -45,6 +45,7 @@ export default function Index() {
         <Image
           alt="Image of Kyle Thompson"
           fixed={me.childImageSharp.fixed}
+          loading="eager"
         />
         <Card>
           <AboutMe>
