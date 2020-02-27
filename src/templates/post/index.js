@@ -13,10 +13,28 @@ import {
 } from '../../components/blog-post';
 import { graphql } from 'gatsby';
 
+const Article = styled.article`
+  align-items: center;
+  background-color: ${(props) => props.theme.colors.offWhite};
+  box-shadow: 0px 4px 75px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: -125px auto 0;
+  max-width: 800px;
+  min-height: 250px;
+  padding: 40px 0;
+  width: calc(100vw - 40px);
+`;
+
 const PaddingWrapper = styled.div`
   margin: 0 auto;
-  max-width: 720px;
-  width: calc(100vw - 40px);
+  max-width: 760px;
+  width: calc(100vw - 80px);
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
 `;
 
 export default function Post({ data: { mdx } }) {
@@ -40,7 +58,7 @@ export default function Post({ data: { mdx } }) {
         isArticle={true}
         slug={slug}
       />
-      <article>
+      <Article>
         <PaddingWrapper>
           <Title>{title}</Title>
           <div>
@@ -49,7 +67,9 @@ export default function Post({ data: { mdx } }) {
             </PostMeta>
           </div>
         </PaddingWrapper>
-        <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />
+        <ImageContainer>
+          <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />
+        </ImageContainer>
         <PaddingWrapper>
           <BannerCreditWrapper>
             <Markdown renderers={{ link: BannerCreditLink }}>
@@ -58,7 +78,7 @@ export default function Post({ data: { mdx } }) {
           </BannerCreditWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </PaddingWrapper>
-      </article>
+      </Article>
     </Layout>
   );
 }
@@ -72,8 +92,8 @@ export const pageQuery = graphql`
         bannerCredit
         bannerImage {
           childImageSharp {
-            fluid(maxWidth: 720, traceSVG: { color: "#3E7CB1" }, quality: 75) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            fluid(maxWidth: 800, quality: 75) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

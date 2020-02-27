@@ -5,30 +5,33 @@ import SEO from '../../components/seo';
 import styled from 'styled-components';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 
-const PaddingWrapper = styled.div`
-  margin: 0 auto;
-  max-width: 720px;
+const Container = styled.div`
+  margin: -125px auto 0;
+  max-width: 800px;
   width: calc(100vw - 40px);
 `;
 
 const Card = styled.div`
-  background-color: ${({ theme }) => theme.colors.greys.lighter};
+  background-color: ${(props) => props.theme.colors.offWhite};
+  box-shadow: 0px 4px 75px rgba(0, 0, 0, 0.25);
   margin-bottom: 30px;
   padding: 20px;
-  border-radius: 5px;
 `;
 
 const Title = styled.h2`
   margin-bottom: 10px;
 `;
 
+const ImageContainer = styled.div`
+  width: 100%;
+`;
+
 const StyledImage = styled(Image)`
-  border-radius: 5px;
   margin-bottom: 20px;
 `;
 
 const NoDecorationLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.offBlack};
 
   &:hover {
     text-decoration: none;
@@ -71,7 +74,7 @@ export default function Blog({ pageContext: { pagination } }) {
   return (
     <Layout>
       <SEO title={`All Blog Posts | Page ${pageNumber}`} slug={path} />
-      <PaddingWrapper>
+      <Container>
         {posts.map(({ node }) => (
           <NoDecorationLink
             key={node.fields.slug}
@@ -79,16 +82,18 @@ export default function Blog({ pageContext: { pagination } }) {
             to={node.fields.slug}
           >
             <Card>
-              <StyledImage
-                fluid={node.fields.bannerImage.childImageSharp.fluid}
-              />
+              <ImageContainer>
+                <StyledImage
+                  fluid={node.fields.bannerImage.childImageSharp.fluid}
+                />
+              </ImageContainer>
               <Title>{node.fields.title}</Title>
               <p>{node.excerpt}</p>
             </Card>
           </NoDecorationLink>
         ))}
         <Navigation previous={previousPagePath} next={nextPagePath} />
-      </PaddingWrapper>
+      </Container>
     </Layout>
   );
 }
@@ -111,12 +116,8 @@ const ALL_POSTS_QUERY = graphql`
             slug
             bannerImage {
               childImageSharp {
-                fluid(
-                  maxWidth: 640
-                  traceSVG: { color: "#3E7CB1" }
-                  quality: 75
-                ) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                fluid(maxWidth: 760, quality: 75) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

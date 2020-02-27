@@ -11,12 +11,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 const theme = {
   colors: {
-    primary: '#054A91',
-    secondary: '#3E7CB1',
-    background: '#EEEEEE',
-    accent: '#FF5E5B',
-    accentTransparent: '#FF5E5B36',
-    black: '#333333',
+    mediumElectricBlue: '#054A91',
+    steelBlue: '#3E7CB1',
+    isabelline: '#EEEEEE',
+    sunsetOrange: '#FF5E5B',
+    sunsetOrangeTransparent: '#FF5E5B36',
+    offBlack: '#333333',
+    offWhite: '#FDFDFD',
     greys: {
       lighter: '#F3F3F3',
       darker: '#C8C8C8',
@@ -27,9 +28,12 @@ const theme = {
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  html {
+    background-color: ${(props) => props.theme.colors.isabelline};
+  }
+
   body {
-    background-color: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.black};
+    color: ${(props) => props.theme.colors.offBlack};
     font-family: 'Open Sans', sans-serif;
     margin: 0;
   }
@@ -46,11 +50,12 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  max-width: 720px;
   min-height: 100vh;
 `;
 
 const ContentContainer = styled.div`
+  align-items: center;
+  justifty-content: center;
   flex: 1 0 auto;
 `;
 
@@ -65,7 +70,7 @@ export default function Layout({ children }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <>
         <GlobalStyle />
         <Helmet
           defaultTitle={siteMetadata.title}
@@ -87,16 +92,18 @@ export default function Layout({ children }) {
             rel="stylesheet"
           />
         </Helmet>
-        <ContentContainer>
-          <Header />
-          <MDXProvider components={mdxComponents}>
-            <main>{children}</main>
-          </MDXProvider>
-        </ContentContainer>
-        <FooterContainer>
-          <Footer />
-        </FooterContainer>
-      </Container>
+        <Container>
+          <ContentContainer>
+            <Header />
+            <MDXProvider components={mdxComponents}>
+              <main>{children}</main>
+            </MDXProvider>
+          </ContentContainer>
+          <FooterContainer>
+            <Footer />
+          </FooterContainer>
+        </Container>
+      </>
     </ThemeProvider>
   );
 }
