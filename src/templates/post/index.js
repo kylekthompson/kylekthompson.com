@@ -33,6 +33,10 @@ const PaddingWrapper = styled.div`
   width: calc(100vw - 40px);
 `;
 
+const ImageContainer = styled.div`
+  width: 100%;
+`;
+
 export default function Post({ data: { mdx } }) {
   const {
     author,
@@ -63,7 +67,9 @@ export default function Post({ data: { mdx } }) {
             </PostMeta>
           </div>
         </PaddingWrapper>
-        <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />
+        <ImageContainer>
+          <Image alt={bannerAlt} fluid={bannerImage.childImageSharp.fluid} />
+        </ImageContainer>
         <PaddingWrapper>
           <BannerCreditWrapper>
             <Markdown renderers={{ link: BannerCreditLink }}>
@@ -86,7 +92,7 @@ export const pageQuery = graphql`
         bannerCredit
         bannerImage {
           childImageSharp {
-            fluid(maxWidth: 720, traceSVG: { color: "#3E7CB1" }, quality: 75) {
+            fluid(maxWidth: 800, traceSVG: { color: "#3E7CB1" }, quality: 75) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
