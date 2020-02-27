@@ -13,6 +13,20 @@ import {
 } from '../../components/blog-post';
 import { graphql } from 'gatsby';
 
+const Article = styled.article`
+  align-items: center;
+  background-color: ${(props) => props.theme.colors.offWhite};
+  box-shadow: 0px 4px 75px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: -125px auto 0;
+  max-width: 800px;
+  min-height: 250px;
+  padding: 40px 0;
+  width: calc(100vw - 40px);
+`;
+
 const PaddingWrapper = styled.div`
   margin: 0 auto;
   max-width: 720px;
@@ -40,7 +54,7 @@ export default function Post({ data: { mdx } }) {
         isArticle={true}
         slug={slug}
       />
-      <article>
+      <Article>
         <PaddingWrapper>
           <Title>{title}</Title>
           <div>
@@ -58,7 +72,7 @@ export default function Post({ data: { mdx } }) {
           </BannerCreditWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </PaddingWrapper>
-      </article>
+      </Article>
     </Layout>
   );
 }
