@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <article>
+    <h1 class="blog-post-title">{{ .Title }}</h1>
+    <span class="blog-post-meta">{{ .Date.Format .Site.Params.DateFormat }}</span>
+    &bullet;
+    <span class="blog-post-meta">{{ .Params.Author }}</span>
+    {{ .Content }}
+  </article>
+{{ end }}
