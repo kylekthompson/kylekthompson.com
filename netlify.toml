@@ -1,3 +1,17 @@
 [build]
-  command = "yarn build && cp _redirects public"
   publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.80.0"
+  NODE_VERSION = "14.15.4"
+  YARN_VERSION = "1.22.10"
+  NETLIFY_USE_YARN = "true"
+
+[context.production]
+  command = "hugo -b $URL --gc --minify"
+
+[context.deploy-preview]
+  command = "hugo -b $DEPLOY_PRIME_URL --gc --minify"
+
+[context.branch-deploy]
+  command = "hugo -b $DEPLOY_PRIME_URL --gc --minify"
