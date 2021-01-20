@@ -4,7 +4,7 @@
     <article>
       <span class="blog-post-meta">{{ .Date.Format .Site.Params.DateFormat }}</span>
       &bullet;
-      <a href="{{ .URL }}">{{ .Title }}</a>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
       <p class="blog-summary">{{ .Summary }}</p>
     </article>
   {{ end }}

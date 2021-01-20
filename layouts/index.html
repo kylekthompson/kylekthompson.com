@@ -21,7 +21,7 @@
           <li>
             <span class="home-post-meta">{{ .Date.Format .Site.Params.DateFormat }}</span>
             &bullet;
-            <a href="{{ .URL }}">{{ .Title }}</a>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
           </li>
         {{ end }}
       </ul>
