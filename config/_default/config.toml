@@ -1,4 +1,6 @@
 baseURL = "/"
+disableKinds = ["taxonomy", "term"]
+enableRobotsTXT = true
 languageCode = "en-us"
 
 [markup]
@@ -11,3 +13,22 @@ languageCode = "en-us"
     lineNumbersInTable = true
     style = "dracula"
     tabWidth = 2
+
+[outputs]
+home = ["HTML", "RSS", "REDIRECTS", "HEADERS"]
+
+[mediaTypes."text/netlify"]
+suffixes = [""]
+delimiter = ""
+
+[outputFormats.REDIRECTS]
+mediatype = "text/netlify"
+baseName = "_redirects"
+isPlainText = true
+notAlternative = true
+
+[outputFormats.HEADERS]
+mediatype = "text/netlify"
+baseName = "_headers"
+isPlainText = true
+notAlternative = true
