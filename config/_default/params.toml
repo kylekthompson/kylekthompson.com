@@ -1,3 +1,7 @@
 author = "Kyle Thompson"
 dateFormat = "2006-01-02"
+description = "Kyle Thompson's personal website"
 title = "Kyle Thompson"
+
+twitterUsername = "kylekthomp"
+facebookAppId = "317388982278417"
