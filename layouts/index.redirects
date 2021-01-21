@@ -1,0 +1,34 @@
+{{- range $p := .Site.Pages -}}
+{{- range .Aliases }}
+{{ . }} {{ $p.RelPermalink -}}
+{{- end }}
+{{- end -}}
+
+http://kylekthompson.netlify.com/* https://kylekthompson.com/:splat
+https://kylekthompson.netlify.com/* https://kylekthompson.com/:splat
+
+http://yield-thoughts.com/* https://kylekthompson.com/:splat
+https://yield-thoughts.com/* https://kylekthompson.com/:splat
+http://www.yield-thoughts.com/* https://kylekthompson.com/:splat
+https://www.yield-thoughts.com/* https://kylekthompson.com/:splat
+
+http://yieldthoughts.com/* https://kylekthompson.com/:splat
+https://yieldthoughts.com/* https://kylekthompson.com/:splat
+http://www.yieldthoughts.com/* https://kylekthompson.com/:splat
+https://www.yieldthoughts.com/* https://kylekthompson.com/:splat
+
+http://kylekthompson.dev/* https://kylekthompson.com/:splat
+https://kylekthompson.dev/* https://kylekthompson.com/:splat
+http://www.kylekthompson.dev/* https://kylekthompson.com/:splat
+https://www.kylekthompson.dev/* https://kylekthompson.com/:splat
+
+https://www.kylekthompson.com/thoughts https://kylekthompson.com/blog
+https://www.kylekthompson.com/thoughts/ https://kylekthompson.com/blog
+https://www.kylekthompson.com/thoughts/* https://kylekthompson.com/blog/:splat
+
+https://kylekthompson.com/thoughts https://kylekthompson.com/blog
+https://kylekthompson.com/thoughts/ https://kylekthompson.com/blog
+https://kylekthompson.com/thoughts/* https://kylekthompson.com/blog/:splat
+
+http://www.kylekthompson.com/* https://kylekthompson.com/:splat
+https://www.kylekthompson.com/* https://kylekthompson.com/:splat
