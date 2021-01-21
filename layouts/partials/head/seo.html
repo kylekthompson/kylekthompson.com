@@ -7,10 +7,10 @@
 {{ end -}}
 
 {{ if .IsHome -}}
-  <title>{{ .Site.Params.title }}</title>
-  <meta property="og:title" content="{{ .Site.Params.title }}">
+  <title>{{ .Site.Params.Title }}</title>
+  <meta property="og:title" content="{{ .Site.Params.Title }}">
 {{ else -}}
-  <title>{{ .Site.Params.title }} | {{ .Title }}</title>
+  <title>{{ .Site.Params.Title }} | {{ .Title }}</title>
   <meta property="og:title" content="{{ .Title }}">
 {{ end -}}
 
@@ -18,8 +18,8 @@
   <meta name="description" content="{{ . }}">
   <meta property="og:description" content="{{ . }}">
 {{ else -}}
-  <meta name="description" content="{{ .Site.Params.description }}">
-  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta name="description" content="{{ .Site.Params.Description }}">
+  <meta property="og:description" content="{{ .Site.Params.Description }}">
 {{ end -}}
 
 <link rel="canonical" href="{{ .Permalink }}">
